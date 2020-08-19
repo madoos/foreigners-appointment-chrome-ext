@@ -1,4 +1,4 @@
-import { complement, isNil, curryN, pipeK } from 'ramda';
+import { complement, isNil, curryN, pipeK, map, addIndex } from 'ramda';
 import safe from 'crocks/Maybe/safe';
 import IO from 'crocks/IO';
 import { fromEvent } from 'most';
@@ -24,3 +24,5 @@ export const streamFromEvent = curryN(2, fromEvent);
 
 // clickStreamFromId :: String -> Stream Events
 export const clickStreamFromId = pipeK(ioToStream(getElementById), streamFromEvent('click'));
+
+export const mapIndexed = addIndex(map);
