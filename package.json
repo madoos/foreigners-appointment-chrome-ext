@@ -1,0 +1,25 @@
+{
+  "name": "foreigners-appointment",
+  "version": "1.0.0",
+  "description": "",
+  "main": "content.js",
+  "scripts": {
+    "build": "webpack"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@most/create": "^2.0.1",
+    "crocks": "^0.12.4",
+    "most": "^1.8.1",
+    "ramda": "^0.27.1"
+  },
+  "devDependencies": {
+    "copy-webpack-plugin": "^5.1.1",
+    "immutable": "^4.0.0-rc.12",
+    "immutable-ext": "^1.1.5",
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12"
+  }
+}

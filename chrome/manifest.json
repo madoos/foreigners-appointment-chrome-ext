@@ -1,0 +1,32 @@
+{
+    "manifest_version": 2,
+    "name": "foreigners appointment",
+    "version": "1.0",
+    "description": "foreigners appointment",
+
+    "browser_action": {
+        "default_popup": "popup.html"
+    },
+    "icons": {
+        "128": "icons/logo.png"
+    },
+
+    "permissions": [
+        "activeTab",
+        "tabs",
+        "storage"
+    ],
+
+    "content_scripts": [
+        {
+            "matches": [
+                "https://sede.administracionespublicas.gob.es/*"
+            ],
+            "js": [
+                "content.js"
+            ],
+            "all_frames": true
+        }
+    ]
+   
+}
