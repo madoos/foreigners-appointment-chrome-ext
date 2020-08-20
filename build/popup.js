@@ -462,25 +462,6 @@ function _curry2(fn) {
 
 /***/ }),
 /* 4 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/** @license ISC License (c) copyright 2017 original and current authors */
-/** @author Ian Hofmann-Hicks (evil) */
-
-var isFunction = __webpack_require__(7)
-var fl = __webpack_require__(28)
-
-var check = function (alg, m) { return isFunction(m[fl[alg]]) || isFunction(m[alg]); }
-
-var checkImpl = function (alg, m) { return isFunction(m['@@implements']) && !!m['@@implements'](alg); }
-
-var hasAlg = function (alg, m) { return !!m && (check(alg, m) || checkImpl(alg, m)); }
-
-module.exports = hasAlg
-
-
-/***/ }),
-/* 5 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -830,6 +811,25 @@ const setProperty = Object(curry["a" /* default */])((prop, value, el) => {
 
 // setProperty :: String -> HTMLElement -> IO HTMLElement
 const setValue = setProperty('value');
+
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/** @license ISC License (c) copyright 2017 original and current authors */
+/** @author Ian Hofmann-Hicks (evil) */
+
+var isFunction = __webpack_require__(7)
+var fl = __webpack_require__(28)
+
+var check = function (alg, m) { return isFunction(m[fl[alg]]) || isFunction(m[alg]); }
+
+var checkImpl = function (alg, m) { return isFunction(m['@@implements']) && !!m['@@implements'](alg); }
+
+var hasAlg = function (alg, m) { return !!m && (check(alg, m) || checkImpl(alg, m)); }
+
+module.exports = hasAlg
 
 
 /***/ }),
@@ -1598,7 +1598,7 @@ module.exports = isArray
 /** @license ISC License (c) copyright 2016 original and current authors */
 /** @author Ian Hofmann-Hicks (evil) */
 
-var hasAlg = __webpack_require__(4)
+var hasAlg = __webpack_require__(5)
 
 // isFunctor : a -> Boolean
 function isFunctor(m) {
@@ -6639,7 +6639,7 @@ module.exports = {
 /** @license ISC License (c) copyright 2016 original and current authors */
 /** @author Ian Hofmann-Hicks (evil) */
 
-var hasAlg = __webpack_require__(4)
+var hasAlg = __webpack_require__(5)
 var isApply = __webpack_require__(36)
 
 // isApplicative : a -> Boolean
@@ -6945,7 +6945,7 @@ module.exports = isObject
 
 var isSameType = __webpack_require__(20)
 var isSame = __webpack_require__(51)
-var hasAlg = __webpack_require__(4)
+var hasAlg = __webpack_require__(5)
 var type = __webpack_require__(50)
 var fl = __webpack_require__(28)
 
@@ -7005,7 +7005,7 @@ module.exports = equals
 /** @license ISC License (c) copyright 2016 original and current authors */
 /** @author Ian Hofmann-Hicks (evil) */
 
-var hasAlg = __webpack_require__(4)
+var hasAlg = __webpack_require__(5)
 var isFunctor = __webpack_require__(19)
 
 // isApply : a -> Boolean
@@ -7119,7 +7119,7 @@ function _isString(x) {
 /** @author Ian Hofmann-Hicks (evil) */
 
 var isString = __webpack_require__(10)
-var hasAlg = __webpack_require__(4)
+var hasAlg = __webpack_require__(5)
 
 // isSemigroup : a -> Boolean
 function isSemigroup(m) {
@@ -7447,7 +7447,7 @@ module.exports = inspect
 /** @license ISC License (c) copyright 2016 original and current authors */
 /** @author Ian Hofmann-Hicks (evil) */
 
-var hasAlg = __webpack_require__(4)
+var hasAlg = __webpack_require__(5)
 var isSemigroup = __webpack_require__(40)
 
 // isMonoid :: a -> Boolean
@@ -7572,7 +7572,7 @@ module.exports = isNumber
 /** @license ISC License (c) copyright 2017 original and current authors */
 /** @author Ian Hofmann-Hicks (evil) */
 
-var hasAlg = __webpack_require__(4)
+var hasAlg = __webpack_require__(5)
 
 // isFoldable : a -> Boolean
 function isFoldable(m) {
@@ -7590,7 +7590,7 @@ module.exports = isFoldable
 /** @license ISC License (c) copyright 2017 original and current authors */
 /** @author Ian Hofmann-Hicks (evil) */
 
-var hasAlg = __webpack_require__(4)
+var hasAlg = __webpack_require__(5)
 var isFunctor = __webpack_require__(19)
 
 // isAlt : a -> Boolean
@@ -7609,7 +7609,7 @@ module.exports = isAlt
 /** @license ISC License (c) copyright 2016 original and current authors */
 /** @author Ian Hofmann-Hicks (evil) */
 
-var hasAlg = __webpack_require__(4)
+var hasAlg = __webpack_require__(5)
 var isAlt = __webpack_require__(57)
 
 // isPlus : a -> Boolean
@@ -7628,7 +7628,7 @@ module.exports = isPlus
 /** @license ISC License (c) copyright 2017 original and current authors */
 /** @author Ian Hofmann-Hicks (evil) */
 
-var hasAlg = __webpack_require__(4)
+var hasAlg = __webpack_require__(5)
 
 // isSemigroupoid : a -> Boolean
 function isSemigroupoid(m) {
@@ -7645,7 +7645,7 @@ module.exports = isSemigroupoid
 /** @license ISC License (c) copyright 2017 original and current authors */
 /** @author Ian Hofmann-Hicks (evil) */
 
-var hasAlg = __webpack_require__(4)
+var hasAlg = __webpack_require__(5)
 
 // isContravariant : a -> Boolean
 function isContravariant(m) {
@@ -8232,7 +8232,7 @@ Object(_dispatchable["a" /* default */])(['fantasy-land/chain', 'chain'], intern
 /** @license ISC License (c) copyright 2017 original and current authors */
 /** @author Ian Hofmann-Hicks (evil) */
 
-var hasAlg = __webpack_require__(4)
+var hasAlg = __webpack_require__(5)
 var isApplicative = __webpack_require__(29)
 
 // isMonad : a -> Boolean
@@ -8926,7 +8926,7 @@ module.exports =
 /** @license ISC License (c) copyright 2017 original and current authors */
 /** @author Ian Hofmann-Hicks (evil) */
 
-var hasAlg = __webpack_require__(4)
+var hasAlg = __webpack_require__(5)
 var isFunctor = __webpack_require__(19)
 
 // isBifunctor : a -> Boolean
@@ -8956,7 +8956,7 @@ module.exports =
 /** @license ISC License (c) copyright 2019 original and current authors */
 /** @author Dale Francis (dalefrancis88) */
 
-var hasAlg = __webpack_require__(4)
+var hasAlg = __webpack_require__(5)
 
 // isBichain : a -> Boolean
 function isBichain(m) {
@@ -8988,7 +8988,7 @@ module.exports = isBoolean
 /** @license ISC License (c) copyright 2017 original and current authors */
 /** @author Ian Hofmann-Hicks (evil) */
 
-var hasAlg = __webpack_require__(4)
+var hasAlg = __webpack_require__(5)
 var isSemigroupoid = __webpack_require__(59)
 
 // isCategory : a -> Boolean
@@ -9018,7 +9018,7 @@ module.exports =
 /** @license ISC License (c) copyright 2016 original and current authors */
 /** @author Ian Hofmann-Hicks (evil) */
 
-var hasAlg = __webpack_require__(4)
+var hasAlg = __webpack_require__(5)
 var isApply = __webpack_require__(36)
 
 // isChain : a -> Boolean
@@ -9092,7 +9092,7 @@ module.exports =
 /** @license ISC License (c) copyright 2016 original and current authors */
 /** @author Ian Hofmann-Hicks (evil) */
 
-var hasAlg = __webpack_require__(4)
+var hasAlg = __webpack_require__(5)
 var isFunctor = __webpack_require__(19)
 
 // isExtend : a -> Boolean
@@ -9315,7 +9315,7 @@ module.exports =
 /** @license ISC License (c) copyright 2017 original and current authors */
 /** @author Ian Hofmann-Hicks (evil) */
 
-var hasAlg = __webpack_require__(4)
+var hasAlg = __webpack_require__(5)
 var isContravariant = __webpack_require__(60)
 var isFunctor = __webpack_require__(19)
 
@@ -9413,7 +9413,7 @@ module.exports =
 /** @license ISC License (c) copyright 2017 original and current authors */
 /** @author Ian Hofmann-Hicks (evil) */
 
-var hasAlg = __webpack_require__(4)
+var hasAlg = __webpack_require__(5)
 
 // isSetoid : a -> Boolean
 function isSetoid(m) {
@@ -9454,7 +9454,7 @@ module.exports =
 /** @license ISC License (c) copyright 2017 original and current authors */
 /** @author Ian Hofmann-Hicks (evil) */
 
-var hasAlg = __webpack_require__(4)
+var hasAlg = __webpack_require__(5)
 var isFunctor = __webpack_require__(19)
 
 // isTraversable : a -> Boolean
@@ -15655,7 +15655,7 @@ var Iterable = Collection;
 __webpack_require__.r(__webpack_exports__);
 
 // EXTERNAL MODULE: ./chrome/src/helpers.js + 6 modules
-var helpers = __webpack_require__(5);
+var helpers = __webpack_require__(4);
 
 // EXTERNAL MODULE: ./chrome/src/chromeRuntime.js
 var chromeRuntime = __webpack_require__(45);

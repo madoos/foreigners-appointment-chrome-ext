@@ -462,25 +462,6 @@ function _curry2(fn) {
 
 /***/ }),
 /* 4 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/** @license ISC License (c) copyright 2017 original and current authors */
-/** @author Ian Hofmann-Hicks (evil) */
-
-var isFunction = __webpack_require__(7)
-var fl = __webpack_require__(28)
-
-var check = function (alg, m) { return isFunction(m[fl[alg]]) || isFunction(m[alg]); }
-
-var checkImpl = function (alg, m) { return isFunction(m['@@implements']) && !!m['@@implements'](alg); }
-
-var hasAlg = function (alg, m) { return !!m && (check(alg, m) || checkImpl(alg, m)); }
-
-module.exports = hasAlg
-
-
-/***/ }),
-/* 5 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -830,6 +811,25 @@ const setProperty = Object(curry["a" /* default */])((prop, value, el) => {
 
 // setProperty :: String -> HTMLElement -> IO HTMLElement
 const setValue = setProperty('value');
+
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/** @license ISC License (c) copyright 2017 original and current authors */
+/** @author Ian Hofmann-Hicks (evil) */
+
+var isFunction = __webpack_require__(7)
+var fl = __webpack_require__(28)
+
+var check = function (alg, m) { return isFunction(m[fl[alg]]) || isFunction(m[alg]); }
+
+var checkImpl = function (alg, m) { return isFunction(m['@@implements']) && !!m['@@implements'](alg); }
+
+var hasAlg = function (alg, m) { return !!m && (check(alg, m) || checkImpl(alg, m)); }
+
+module.exports = hasAlg
 
 
 /***/ }),
@@ -1598,7 +1598,7 @@ module.exports = isArray
 /** @license ISC License (c) copyright 2016 original and current authors */
 /** @author Ian Hofmann-Hicks (evil) */
 
-var hasAlg = __webpack_require__(4)
+var hasAlg = __webpack_require__(5)
 
 // isFunctor : a -> Boolean
 function isFunctor(m) {
@@ -6639,7 +6639,7 @@ module.exports = {
 /** @license ISC License (c) copyright 2016 original and current authors */
 /** @author Ian Hofmann-Hicks (evil) */
 
-var hasAlg = __webpack_require__(4)
+var hasAlg = __webpack_require__(5)
 var isApply = __webpack_require__(36)
 
 // isApplicative : a -> Boolean
@@ -6945,7 +6945,7 @@ module.exports = isObject
 
 var isSameType = __webpack_require__(20)
 var isSame = __webpack_require__(51)
-var hasAlg = __webpack_require__(4)
+var hasAlg = __webpack_require__(5)
 var type = __webpack_require__(50)
 var fl = __webpack_require__(28)
 
@@ -7005,7 +7005,7 @@ module.exports = equals
 /** @license ISC License (c) copyright 2016 original and current authors */
 /** @author Ian Hofmann-Hicks (evil) */
 
-var hasAlg = __webpack_require__(4)
+var hasAlg = __webpack_require__(5)
 var isFunctor = __webpack_require__(19)
 
 // isApply : a -> Boolean
@@ -7119,7 +7119,7 @@ function _isString(x) {
 /** @author Ian Hofmann-Hicks (evil) */
 
 var isString = __webpack_require__(10)
-var hasAlg = __webpack_require__(4)
+var hasAlg = __webpack_require__(5)
 
 // isSemigroup : a -> Boolean
 function isSemigroup(m) {
@@ -7447,7 +7447,7 @@ module.exports = inspect
 /** @license ISC License (c) copyright 2016 original and current authors */
 /** @author Ian Hofmann-Hicks (evil) */
 
-var hasAlg = __webpack_require__(4)
+var hasAlg = __webpack_require__(5)
 var isSemigroup = __webpack_require__(40)
 
 // isMonoid :: a -> Boolean
@@ -7572,7 +7572,7 @@ module.exports = isNumber
 /** @license ISC License (c) copyright 2017 original and current authors */
 /** @author Ian Hofmann-Hicks (evil) */
 
-var hasAlg = __webpack_require__(4)
+var hasAlg = __webpack_require__(5)
 
 // isFoldable : a -> Boolean
 function isFoldable(m) {
@@ -7590,7 +7590,7 @@ module.exports = isFoldable
 /** @license ISC License (c) copyright 2017 original and current authors */
 /** @author Ian Hofmann-Hicks (evil) */
 
-var hasAlg = __webpack_require__(4)
+var hasAlg = __webpack_require__(5)
 var isFunctor = __webpack_require__(19)
 
 // isAlt : a -> Boolean
@@ -7609,7 +7609,7 @@ module.exports = isAlt
 /** @license ISC License (c) copyright 2016 original and current authors */
 /** @author Ian Hofmann-Hicks (evil) */
 
-var hasAlg = __webpack_require__(4)
+var hasAlg = __webpack_require__(5)
 var isAlt = __webpack_require__(57)
 
 // isPlus : a -> Boolean
@@ -7628,7 +7628,7 @@ module.exports = isPlus
 /** @license ISC License (c) copyright 2017 original and current authors */
 /** @author Ian Hofmann-Hicks (evil) */
 
-var hasAlg = __webpack_require__(4)
+var hasAlg = __webpack_require__(5)
 
 // isSemigroupoid : a -> Boolean
 function isSemigroupoid(m) {
@@ -7645,7 +7645,7 @@ module.exports = isSemigroupoid
 /** @license ISC License (c) copyright 2017 original and current authors */
 /** @author Ian Hofmann-Hicks (evil) */
 
-var hasAlg = __webpack_require__(4)
+var hasAlg = __webpack_require__(5)
 
 // isContravariant : a -> Boolean
 function isContravariant(m) {
@@ -8232,7 +8232,7 @@ Object(_dispatchable["a" /* default */])(['fantasy-land/chain', 'chain'], intern
 /** @license ISC License (c) copyright 2017 original and current authors */
 /** @author Ian Hofmann-Hicks (evil) */
 
-var hasAlg = __webpack_require__(4)
+var hasAlg = __webpack_require__(5)
 var isApplicative = __webpack_require__(29)
 
 // isMonad : a -> Boolean
@@ -8926,7 +8926,7 @@ module.exports =
 /** @license ISC License (c) copyright 2017 original and current authors */
 /** @author Ian Hofmann-Hicks (evil) */
 
-var hasAlg = __webpack_require__(4)
+var hasAlg = __webpack_require__(5)
 var isFunctor = __webpack_require__(19)
 
 // isBifunctor : a -> Boolean
@@ -8956,7 +8956,7 @@ module.exports =
 /** @license ISC License (c) copyright 2019 original and current authors */
 /** @author Dale Francis (dalefrancis88) */
 
-var hasAlg = __webpack_require__(4)
+var hasAlg = __webpack_require__(5)
 
 // isBichain : a -> Boolean
 function isBichain(m) {
@@ -8988,7 +8988,7 @@ module.exports = isBoolean
 /** @license ISC License (c) copyright 2017 original and current authors */
 /** @author Ian Hofmann-Hicks (evil) */
 
-var hasAlg = __webpack_require__(4)
+var hasAlg = __webpack_require__(5)
 var isSemigroupoid = __webpack_require__(59)
 
 // isCategory : a -> Boolean
@@ -9018,7 +9018,7 @@ module.exports =
 /** @license ISC License (c) copyright 2016 original and current authors */
 /** @author Ian Hofmann-Hicks (evil) */
 
-var hasAlg = __webpack_require__(4)
+var hasAlg = __webpack_require__(5)
 var isApply = __webpack_require__(36)
 
 // isChain : a -> Boolean
@@ -9092,7 +9092,7 @@ module.exports =
 /** @license ISC License (c) copyright 2016 original and current authors */
 /** @author Ian Hofmann-Hicks (evil) */
 
-var hasAlg = __webpack_require__(4)
+var hasAlg = __webpack_require__(5)
 var isFunctor = __webpack_require__(19)
 
 // isExtend : a -> Boolean
@@ -9315,7 +9315,7 @@ module.exports =
 /** @license ISC License (c) copyright 2017 original and current authors */
 /** @author Ian Hofmann-Hicks (evil) */
 
-var hasAlg = __webpack_require__(4)
+var hasAlg = __webpack_require__(5)
 var isContravariant = __webpack_require__(60)
 var isFunctor = __webpack_require__(19)
 
@@ -9413,7 +9413,7 @@ module.exports =
 /** @license ISC License (c) copyright 2017 original and current authors */
 /** @author Ian Hofmann-Hicks (evil) */
 
-var hasAlg = __webpack_require__(4)
+var hasAlg = __webpack_require__(5)
 
 // isSetoid : a -> Boolean
 function isSetoid(m) {
@@ -9454,7 +9454,7 @@ module.exports =
 /** @license ISC License (c) copyright 2017 original and current authors */
 /** @author Ian Hofmann-Hicks (evil) */
 
-var hasAlg = __webpack_require__(4)
+var hasAlg = __webpack_require__(5)
 var isFunctor = __webpack_require__(19)
 
 // isTraversable : a -> Boolean
@@ -10008,7 +10008,7 @@ var IO = __webpack_require__(6);
 var IO_default = /*#__PURE__*/__webpack_require__.n(IO);
 
 // EXTERNAL MODULE: ./chrome/src/helpers.js + 6 modules
-var helpers = __webpack_require__(5);
+var helpers = __webpack_require__(4);
 
 // CONCATENATED MODULE: ./chrome/src/storage.js
 
@@ -10069,11 +10069,37 @@ const speak = (text) =>
 
 
 
+const SELECTORS = {
+	BTN_ACCEPT: '#btnAceptar',
+	BTN_NEXT: '#btnSiguiente',
+	BTN_ENTER: '#btnEntrar',
+	BTN_SEND: '#btnEnviar',
+	BTN_SUBMIT: '#btnSubmit',
+	OPT_CITY: '#form',
+	OPT_PROCESS_TYPE: '#tramiteGrupo\\[0\\]',
+	OPT_OFFICE: '#idSede',
+	INP_NATIONALITY: '#txtPaisNac',
+	INP_DOC_NUMBER: '#txtIdCitado',
+	INP_NAME: '#txtDesCitado',
+	INP_DATE: '#txtFecha',
+	INP_TEL: '#txtTelefonoCitado',
+	INP_EMAIL: '#emailUNO',
+	INP_REPEAT_EMAIL: '#emailDOS',
+	CB_DOC_TYPE: '#rdbTipoDocPas',
+	TEXT_NO_APPOINTMENT: '#mensajeInfo > p.mf-msg__info > span > b'
+};
+
+const MESSAGES = {
+	SOLVE_CAPTCHA: 'Resolver captcha',
+	NO_APPOINTMENT: 'NO HAY SUFICIENTES CITAS DISPONIBLES',
+	HAVE_APPOINTMENT: 'Si tienes citas disponibles'
+};
+
 // _clickAcceptButton :: () -> IO ()
-const _clickAcceptButton = () => Object(helpers["b" /* click */])('#btnAceptar');
+const _clickAcceptButton = () => Object(helpers["b" /* click */])(SELECTORS.BTN_ACCEPT);
 
 // _clickNextButton :: () -> IO ()
-const _clickNextButton = () => Object(helpers["b" /* click */])('#btnSiguiente');
+const _clickNextButton = () => Object(helpers["b" /* click */])(SELECTORS.BTN_NEXT);
 
 // getIndexByValue :: (HTMLElement, value) -> String
 const getIndexByValue = (options, value) => Array.from(options).find((x) => x.text === value).index;
@@ -10081,7 +10107,7 @@ const getIndexByValue = (options, value) => Array.from(options).find((x) => x.te
 // notifySolveCaptcha :: Number -> HTMLElement -> IO ()
 const notifySolveCaptcha = Object(curry["a" /* default */])((ms, btn) => {
 	const action = helpers["a" /* Monad */].do(function*() {
-		const value = btn.disabled ? speak('Resolver captcha') : Object(helpers["b" /* click */])(btn);
+		const value = btn.disabled ? speak(MESSAGES.SOLVE_CAPTCHA) : Object(helpers["b" /* click */])(btn);
 		return IO_default.a.of(yield value);
 	});
 
@@ -10090,30 +10116,30 @@ const notifySolveCaptcha = Object(curry["a" /* default */])((ms, btn) => {
 
 // selectCity :: () -> IO ()
 const selectCity = Object(pipeK["a" /* default */])(
-	() => Object(helpers["k" /* selectIndex */])('#form', 33), // 33 is Madrid City
+	() => Object(helpers["k" /* selectIndex */])(SELECTORS.OPT_CITY, 33), // 33 is Madrid City
 	_clickAcceptButton
 );
 
 // selectProcessType :: () -> IO ()
 const selectProcessType = Object(pipeK["a" /* default */])(
-	() => Object(helpers["k" /* selectIndex */])('#tramiteGrupo\\[0\\]', 19), // select Huella y renovación
+	() => Object(helpers["k" /* selectIndex */])(SELECTORS.OPT_PROCESS_TYPE, 19), // select Huella y renovación
 	_clickAcceptButton
 );
 
 // enterToProcedure :: () -> IO ()
-const enterToProcedure = () => Object(helpers["b" /* click */])('#btnEntrar');
+const enterToProcedure = () => Object(helpers["b" /* click */])(SELECTORS.BTN_ENTER);
 
 // setPersonalInformation :: User -> Stream ()
 const setPersonalInformation = (user) =>
 	helpers["a" /* Monad */].do(function*() {
-		const sendBtn = yield Object(helpers["i" /* querySelector */])('#btnEnviar');
-		const countryNationalityInput = yield Object(helpers["i" /* querySelector */])('#txtPaisNac');
-		const documentNumberInput = yield Object(helpers["i" /* querySelector */])('#txtIdCitado');
-		const nameInput = yield Object(helpers["i" /* querySelector */])('#txtDesCitado');
-		const cardExpirationInput = yield Object(helpers["i" /* querySelector */])('#txtFecha');
+		const sendBtn = yield Object(helpers["i" /* querySelector */])(SELECTORS.BTN_SEND);
+		const countryNationalityInput = yield Object(helpers["i" /* querySelector */])(SELECTORS.INP_NATIONALITY);
+		const documentNumberInput = yield Object(helpers["i" /* querySelector */])(SELECTORS.INP_DOC_NUMBER);
+		const nameInput = yield Object(helpers["i" /* querySelector */])(SELECTORS.INP_NAME);
+		const cardExpirationInput = yield Object(helpers["i" /* querySelector */])(SELECTORS.INP_DATE);
 		const countryIndex = getIndexByValue(countryNationalityInput, user.country);
 
-		if (user.isPassport) yield Object(helpers["b" /* click */])('#rdbTipoDocPas');
+		if (user.isPassport) yield Object(helpers["b" /* click */])(SELECTORS.CB_DOC_TYPE);
 
 		yield Object(helpers["m" /* setValue */])(user.docNumber, documentNumberInput);
 		yield Object(helpers["m" /* setValue */])(user.name, nameInput);
@@ -10125,19 +10151,19 @@ const setPersonalInformation = (user) =>
 	});
 
 // askForAppointment :: () -> IO ()
-const askForAppointment = () => Object(helpers["b" /* click */])('#btnEnviar');
+const askForAppointment = () => Object(helpers["b" /* click */])(SELECTORS.BTN_SEND);
 
+// selectOffice :: () -> IO ()
 const selectOffice = Object(pipeK["a" /* default */])(
-	() => Object(helpers["k" /* selectIndex */])('#idSede', 0), // selecciona oficina
+	() => Object(helpers["k" /* selectIndex */])(SELECTORS.OPT_OFFICE, 0), // selecciona oficina
 	_clickNextButton
 );
 
 const setContactInformation = (user) =>
 	helpers["a" /* Monad */].do(function*() {
-		debugger;
-		const telInput = yield Object(helpers["i" /* querySelector */])('#txtTelefonoCitado');
-		const emailInput = yield Object(helpers["i" /* querySelector */])('#emailUNO');
-		const repeatEmailInput = yield Object(helpers["i" /* querySelector */])('#emailDOS');
+		const telInput = yield Object(helpers["i" /* querySelector */])(SELECTORS.INP_TEL);
+		const emailInput = yield Object(helpers["i" /* querySelector */])(SELECTORS.INP_EMAIL);
+		const repeatEmailInput = yield Object(helpers["i" /* querySelector */])(INP_REPEAT_EMAIL);
 
 		yield Object(helpers["m" /* setValue */])(user.tel, telInput);
 		yield Object(helpers["m" /* setValue */])(user.email, emailInput);
@@ -10150,11 +10176,11 @@ const setContactInformation = (user) =>
 // verifyAppointment :: () -> IO ()
 const verifyAppointment = () =>
 	helpers["a" /* Monad */].do(function*() {
-		const NO_APPOINTMENT = 'NO HAY SUFICIENTES CITAS DISPONIBLES';
-		const messageArea = yield Object(helpers["i" /* querySelector */])('#mensajeInfo > p.mf-msg__info > span > b');
-		const submitBtn = yield Object(helpers["i" /* querySelector */])('#btnSubmit');
+		const { NO_APPOINTMENT, HAVE_APPOINTMENT } = MESSAGES;
+		const messageArea = yield Object(helpers["i" /* querySelector */])(SELECTORS.TEXT_NO_APPOINTMENT);
+		const submitBtn = yield Object(helpers["i" /* querySelector */])(SELECTORS.BTN_SUBMIT);
 		const msg = messageArea.textContent;
-		const action = msg === NO_APPOINTMENT ? Object(helpers["b" /* click */])(submitBtn) : speak('Si tienes citas disponibles');
+		const action = msg === NO_APPOINTMENT ? Object(helpers["b" /* click */])(submitBtn) : speak(HAVE_APPOINTMENT);
 		return IO_default.a.of(yield action);
 	});
 
