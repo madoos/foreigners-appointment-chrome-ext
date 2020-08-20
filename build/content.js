@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 137);
+/******/ 	return __webpack_require__(__webpack_require__.s = 141);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -389,7 +389,7 @@ function curry4(f) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return _curry1; });
-/* harmony import */ var _isPlaceholder_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2);
+/* harmony import */ var _isPlaceholder_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(3);
 
 /**
  * Optimized internal one-arity curry function.
@@ -415,19 +415,9 @@ function _curry1(fn) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return _isPlaceholder; });
-function _isPlaceholder(a) {
-  return a != null && typeof a === 'object' && a['@@functional/placeholder'] === true;
-}
-
-/***/ }),
-/* 3 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return _curry2; });
 /* harmony import */ var _curry1_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
-/* harmony import */ var _isPlaceholder_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(2);
+/* harmony import */ var _isPlaceholder_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(3);
 
 
 /**
@@ -461,6 +451,16 @@ function _curry2(fn) {
 }
 
 /***/ }),
+/* 3 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return _isPlaceholder; });
+function _isPlaceholder(a) {
+  return a != null && typeof a === 'object' && a['@@functional/placeholder'] === true;
+}
+
+/***/ }),
 /* 4 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -489,18 +489,18 @@ __webpack_require__.d(__webpack_exports__, "m", function() { return /* binding *
 var _curry1 = __webpack_require__(1);
 
 // EXTERNAL MODULE: ./node_modules/ramda/es/internal/_curry2.js
-var _curry2 = __webpack_require__(3);
+var _curry2 = __webpack_require__(2);
 
 // EXTERNAL MODULE: ./node_modules/ramda/es/internal/_reduce.js + 2 modules
-var _reduce = __webpack_require__(9);
+var _reduce = __webpack_require__(8);
 
 // EXTERNAL MODULE: ./node_modules/ramda/es/ap.js
-var ap = __webpack_require__(43);
+var ap = __webpack_require__(46);
 
 // EXTERNAL MODULE: ./node_modules/ramda/es/curryN.js + 1 modules
-var curryN = __webpack_require__(15);
+var curryN = __webpack_require__(12);
 
-// EXTERNAL MODULE: ./node_modules/ramda/es/map.js + 2 modules
+// EXTERNAL MODULE: ./node_modules/ramda/es/map.js + 1 modules
 var map = __webpack_require__(11);
 
 // CONCATENATED MODULE: ./node_modules/ramda/es/liftN.js
@@ -657,10 +657,10 @@ Object(_curry1["a" /* default */])(function isNil(x) {
 
 /* harmony default export */ var es_isNil = (isNil);
 // EXTERNAL MODULE: ./node_modules/ramda/es/pipeK.js + 3 modules
-var pipeK = __webpack_require__(139);
+var pipeK = __webpack_require__(142);
 
 // EXTERNAL MODULE: ./node_modules/ramda/es/internal/_concat.js
-var _concat = __webpack_require__(25);
+var _concat = __webpack_require__(27);
 
 // CONCATENATED MODULE: ./node_modules/ramda/es/addIndex.js
 
@@ -711,14 +711,14 @@ Object(_curry1["a" /* default */])(function addIndex(fn) {
 });
 
 /* harmony default export */ var es_addIndex = (addIndex_addIndex);
-// EXTERNAL MODULE: ./node_modules/ramda/es/always.js
-var always = __webpack_require__(134);
-
 // EXTERNAL MODULE: ./node_modules/ramda/es/curry.js
-var curry = __webpack_require__(135);
+var curry = __webpack_require__(137);
+
+// EXTERNAL MODULE: ./node_modules/ramda/es/always.js
+var always = __webpack_require__(138);
 
 // EXTERNAL MODULE: ./node_modules/crocks/Maybe/safe.js
-var safe = __webpack_require__(63);
+var safe = __webpack_require__(66);
 var safe_default = /*#__PURE__*/__webpack_require__.n(safe);
 
 // EXTERNAL MODULE: ./node_modules/crocks/IO/index.js
@@ -726,13 +726,13 @@ var IO = __webpack_require__(6);
 var IO_default = /*#__PURE__*/__webpack_require__.n(IO);
 
 // EXTERNAL MODULE: ./node_modules/most/src/index.js + 65 modules
-var src = __webpack_require__(26);
+var src = __webpack_require__(29);
 
 // EXTERNAL MODULE: ./chrome/src/naturalTransformations.js
-var naturalTransformations = __webpack_require__(33);
+var naturalTransformations = __webpack_require__(35);
 
 // EXTERNAL MODULE: ./node_modules/crocks/predicates/index.js
-var predicates = __webpack_require__(38);
+var predicates = __webpack_require__(40);
 
 // CONCATENATED MODULE: ./chrome/src/helpers.js
 
@@ -767,7 +767,9 @@ const clickStreamFromId = Object(pipeK["a" /* default */])(Object(naturalTransfo
 const mapIndexed = es_addIndex(map["a" /* default */]);
 
 // selectIndex :: (String, Number) -> IO ()
-const selectIndex = (selector, index) => IO_default()(() => (document.querySelector(selector).selectedIndex = index));
+const selectIndex = Object(curry["a" /* default */])((selector, index) =>
+	IO_default()(() => (document.querySelector(selector).selectedIndex = index))
+);
 
 // click :: ( String | HTMLElement )-> IO ()
 const click = (selector) =>
@@ -821,7 +823,7 @@ const setValue = setProperty('value');
 /** @author Ian Hofmann-Hicks (evil) */
 
 var isFunction = __webpack_require__(7)
-var fl = __webpack_require__(28)
+var fl = __webpack_require__(32)
 
 var check = function (alg, m) { return isFunction(m[fl[alg]]) || isFunction(m[alg]); }
 
@@ -841,15 +843,15 @@ module.exports = hasAlg
 
 var VERSION = 2
 
-var _implements = __webpack_require__(46)
-var _inspect = __webpack_require__(47)
-var type = __webpack_require__(21).type('IO')
-var _type = __webpack_require__(21).typeFn(type(), VERSION)
-var fl = __webpack_require__(28)
+var _implements = __webpack_require__(48)
+var _inspect = __webpack_require__(49)
+var type = __webpack_require__(23).type('IO')
+var _type = __webpack_require__(23).typeFn(type(), VERSION)
+var fl = __webpack_require__(32)
 
-var compose = __webpack_require__(54)
+var compose = __webpack_require__(56)
 var isFunction = __webpack_require__(7)
-var isSameType = __webpack_require__(20)
+var isSameType = __webpack_require__(22)
 
 var _of =
   function (x) { return IO(function () { return x; }); }
@@ -948,64 +950,6 @@ module.exports = isFunction
 
 /***/ }),
 /* 8 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/** @license ISC License (c) copyright 2016 original and current authors */
-/** @author Ian Hofmann-Hicks (evil) */
-
-var isFunction = __webpack_require__(7)
-
-var CURRY_SYMB =
-  '@@crocks/curried'
-
-function applyCurry(fn, arg) {
-  if(!isFunction(fn)) { return fn }
-
-  return fn.length > 1 ? fn.bind(null, arg) : fn.call(null, arg)
-}
-
-// curry : ((a, b, c) -> d) -> a -> b -> c -> d
-function curry(fn) {
-  if(fn[CURRY_SYMB]) {
-    return fn
-  }
-
-  function curried() {
-    var xs = [], len = arguments.length;
-    while ( len-- ) xs[ len ] = arguments[ len ];
-
-    var args =
-      xs.length ? xs : [ undefined ]
-
-    if(args.length < fn.length) {
-      return curry(Function.bind.apply(fn, [ null ].concat(args)))
-    }
-
-    var val = args.length === fn.length
-      ? fn.apply(null, args)
-      : args.reduce(applyCurry, fn)
-
-    if(isFunction(val)) {
-      return curry(val)
-    }
-
-    return val
-  }
-
-  Object.defineProperty(curried, CURRY_SYMB, {
-    enumerable: false,
-    writable: false,
-    value: true
-  })
-
-  return curried
-}
-
-module.exports = curry
-
-
-/***/ }),
-/* 9 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1014,7 +958,7 @@ module.exports = curry
 __webpack_require__.d(__webpack_exports__, "a", function() { return /* binding */ _reduce; });
 
 // EXTERNAL MODULE: ./node_modules/ramda/es/internal/_isArrayLike.js
-var _isArrayLike = __webpack_require__(23);
+var _isArrayLike = __webpack_require__(25);
 
 // CONCATENATED MODULE: ./node_modules/ramda/es/internal/_xwrap.js
 var XWrap =
@@ -1043,10 +987,10 @@ function _xwrap(fn) {
   return new XWrap(fn);
 }
 // EXTERNAL MODULE: ./node_modules/ramda/es/internal/_arity.js
-var _arity = __webpack_require__(14);
+var _arity = __webpack_require__(15);
 
 // EXTERNAL MODULE: ./node_modules/ramda/es/internal/_curry2.js
-var _curry2 = __webpack_require__(3);
+var _curry2 = __webpack_require__(2);
 
 // CONCATENATED MODULE: ./node_modules/ramda/es/bind.js
 
@@ -1157,6 +1101,64 @@ function _reduce(fn, acc, list) {
 }
 
 /***/ }),
+/* 9 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/** @license ISC License (c) copyright 2016 original and current authors */
+/** @author Ian Hofmann-Hicks (evil) */
+
+var isFunction = __webpack_require__(7)
+
+var CURRY_SYMB =
+  '@@crocks/curried'
+
+function applyCurry(fn, arg) {
+  if(!isFunction(fn)) { return fn }
+
+  return fn.length > 1 ? fn.bind(null, arg) : fn.call(null, arg)
+}
+
+// curry : ((a, b, c) -> d) -> a -> b -> c -> d
+function curry(fn) {
+  if(fn[CURRY_SYMB]) {
+    return fn
+  }
+
+  function curried() {
+    var xs = [], len = arguments.length;
+    while ( len-- ) xs[ len ] = arguments[ len ];
+
+    var args =
+      xs.length ? xs : [ undefined ]
+
+    if(args.length < fn.length) {
+      return curry(Function.bind.apply(fn, [ null ].concat(args)))
+    }
+
+    var val = args.length === fn.length
+      ? fn.apply(null, args)
+      : args.reduce(applyCurry, fn)
+
+    if(isFunction(val)) {
+      return curry(val)
+    }
+
+    return val
+  }
+
+  Object.defineProperty(curried, CURRY_SYMB, {
+    enumerable: false,
+    writable: false,
+    value: true
+  })
+
+  return curried
+}
+
+module.exports = curry
+
+
+/***/ }),
 /* 10 */
 /***/ (function(module, exports) {
 
@@ -1178,29 +1180,19 @@ module.exports = isString
 "use strict";
 
 // EXTERNAL MODULE: ./node_modules/ramda/es/internal/_curry2.js
-var _curry2 = __webpack_require__(3);
+var _curry2 = __webpack_require__(2);
 
 // EXTERNAL MODULE: ./node_modules/ramda/es/internal/_dispatchable.js + 1 modules
-var _dispatchable = __webpack_require__(32);
+var _dispatchable = __webpack_require__(30);
 
-// CONCATENATED MODULE: ./node_modules/ramda/es/internal/_map.js
-function _map(fn, functor) {
-  var idx = 0;
-  var len = functor.length;
-  var result = Array(len);
+// EXTERNAL MODULE: ./node_modules/ramda/es/internal/_map.js
+var _map = __webpack_require__(42);
 
-  while (idx < len) {
-    result[idx] = fn(functor[idx]);
-    idx += 1;
-  }
-
-  return result;
-}
 // EXTERNAL MODULE: ./node_modules/ramda/es/internal/_reduce.js + 2 modules
-var _reduce = __webpack_require__(9);
+var _reduce = __webpack_require__(8);
 
 // EXTERNAL MODULE: ./node_modules/ramda/es/internal/_xfBase.js
-var _xfBase = __webpack_require__(17);
+var _xfBase = __webpack_require__(16);
 
 // CONCATENATED MODULE: ./node_modules/ramda/es/internal/_xmap.js
 
@@ -1232,10 +1224,10 @@ Object(_curry2["a" /* default */])(function _xmap(f, xf) {
 
 /* harmony default export */ var internal_xmap = (_xmap);
 // EXTERNAL MODULE: ./node_modules/ramda/es/curryN.js + 1 modules
-var curryN = __webpack_require__(15);
+var curryN = __webpack_require__(12);
 
-// EXTERNAL MODULE: ./node_modules/ramda/es/keys.js + 2 modules
-var keys = __webpack_require__(44);
+// EXTERNAL MODULE: ./node_modules/ramda/es/keys.js + 1 modules
+var keys = __webpack_require__(21);
 
 // CONCATENATED MODULE: ./node_modules/ramda/es/map.js
 
@@ -1299,7 +1291,7 @@ Object(_dispatchable["a" /* default */])(['fantasy-land/map', 'map'], internal_x
       }, {}, Object(keys["a" /* default */])(functor));
 
     default:
-      return _map(fn, functor);
+      return Object(_map["a" /* default */])(fn, functor);
   }
 }));
 
@@ -1307,139 +1299,21 @@ Object(_dispatchable["a" /* default */])(['fantasy-land/map', 'map'], internal_x
 
 /***/ }),
 /* 12 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/** @license ISC License (c) copyright 2016 original and current authors */
-/** @author Ian Hofmann-Hicks (evil) */
-var isObject = __webpack_require__(34)
-var isMonoid = __webpack_require__(49)
-var equals = __webpack_require__(35)
-var fl = __webpack_require__(28)
-
-function isEmpty(x) {
-  if(isMonoid(x)) {
-    var empty = x.constructor[fl['empty']] || x.constructor['empty'] || x['empty']
-
-    return equals(x, empty())
-  }
-
-  if(isObject(x)) {
-    return !Object.keys(x).length
-  }
-
-  if(x && x.length !== undefined) {
-    return !x.length
-  }
-
-  return true
-}
-
-module.exports = isEmpty
-
-
-/***/ }),
-/* 13 */
-/***/ (function(module, exports) {
-
-/** @license ISC License (c) copyright 2017 original and current authors */
-/** @author Ian Hofmann-Hicks (evil) */
-
-/* eslint eqeqeq: "off" */
-
-// isNil : a -> Boolean
-function isNil(x) {
-  return x == null || x !== x
-}
-
-module.exports = isNil
-
-
-/***/ }),
-/* 14 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return _arity; });
-function _arity(n, fn) {
-  /* eslint-disable no-unused-vars */
-  switch (n) {
-    case 0:
-      return function () {
-        return fn.apply(this, arguments);
-      };
-
-    case 1:
-      return function (a0) {
-        return fn.apply(this, arguments);
-      };
-
-    case 2:
-      return function (a0, a1) {
-        return fn.apply(this, arguments);
-      };
-
-    case 3:
-      return function (a0, a1, a2) {
-        return fn.apply(this, arguments);
-      };
-
-    case 4:
-      return function (a0, a1, a2, a3) {
-        return fn.apply(this, arguments);
-      };
-
-    case 5:
-      return function (a0, a1, a2, a3, a4) {
-        return fn.apply(this, arguments);
-      };
-
-    case 6:
-      return function (a0, a1, a2, a3, a4, a5) {
-        return fn.apply(this, arguments);
-      };
-
-    case 7:
-      return function (a0, a1, a2, a3, a4, a5, a6) {
-        return fn.apply(this, arguments);
-      };
-
-    case 8:
-      return function (a0, a1, a2, a3, a4, a5, a6, a7) {
-        return fn.apply(this, arguments);
-      };
-
-    case 9:
-      return function (a0, a1, a2, a3, a4, a5, a6, a7, a8) {
-        return fn.apply(this, arguments);
-      };
-
-    case 10:
-      return function (a0, a1, a2, a3, a4, a5, a6, a7, a8, a9) {
-        return fn.apply(this, arguments);
-      };
-
-    default:
-      throw new Error('First argument to _arity must be a non-negative integer no greater than ten');
-  }
-}
-
-/***/ }),
-/* 15 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 
 // EXTERNAL MODULE: ./node_modules/ramda/es/internal/_arity.js
-var _arity = __webpack_require__(14);
+var _arity = __webpack_require__(15);
 
 // EXTERNAL MODULE: ./node_modules/ramda/es/internal/_curry1.js
 var _curry1 = __webpack_require__(1);
 
 // EXTERNAL MODULE: ./node_modules/ramda/es/internal/_curry2.js
-var _curry2 = __webpack_require__(3);
+var _curry2 = __webpack_require__(2);
 
 // EXTERNAL MODULE: ./node_modules/ramda/es/internal/_isPlaceholder.js
-var _isPlaceholder = __webpack_require__(2);
+var _isPlaceholder = __webpack_require__(3);
 
 // CONCATENATED MODULE: ./node_modules/ramda/es/internal/_curryN.js
 
@@ -1545,26 +1419,125 @@ Object(_curry2["a" /* default */])(function curryN(length, fn) {
 /* harmony default export */ var es_curryN = __webpack_exports__["a"] = (curryN_curryN);
 
 /***/ }),
-/* 16 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
+
+/** @license ISC License (c) copyright 2016 original and current authors */
+/** @author Ian Hofmann-Hicks (evil) */
+var isObject = __webpack_require__(36)
+var isMonoid = __webpack_require__(51)
+var equals = __webpack_require__(37)
+var fl = __webpack_require__(32)
+
+function isEmpty(x) {
+  if(isMonoid(x)) {
+    var empty = x.constructor[fl['empty']] || x.constructor['empty'] || x['empty']
+
+    return equals(x, empty())
+  }
+
+  if(isObject(x)) {
+    return !Object.keys(x).length
+  }
+
+  if(x && x.length !== undefined) {
+    return !x.length
+  }
+
+  return true
+}
+
+module.exports = isEmpty
+
+
+/***/ }),
+/* 14 */
+/***/ (function(module, exports) {
 
 /** @license ISC License (c) copyright 2017 original and current authors */
 /** @author Ian Hofmann-Hicks (evil) */
 
-var isNumber = __webpack_require__(55)
+/* eslint eqeqeq: "off" */
 
-// isInteger : a -> Boolean
-function isInteger(x) {
-  return isNumber(x)
-    && isFinite(x)
-    && Math.floor(x) === x
+// isNil : a -> Boolean
+function isNil(x) {
+  return x == null || x !== x
 }
 
-module.exports = isInteger
+module.exports = isNil
 
 
 /***/ }),
-/* 17 */
+/* 15 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return _arity; });
+function _arity(n, fn) {
+  /* eslint-disable no-unused-vars */
+  switch (n) {
+    case 0:
+      return function () {
+        return fn.apply(this, arguments);
+      };
+
+    case 1:
+      return function (a0) {
+        return fn.apply(this, arguments);
+      };
+
+    case 2:
+      return function (a0, a1) {
+        return fn.apply(this, arguments);
+      };
+
+    case 3:
+      return function (a0, a1, a2) {
+        return fn.apply(this, arguments);
+      };
+
+    case 4:
+      return function (a0, a1, a2, a3) {
+        return fn.apply(this, arguments);
+      };
+
+    case 5:
+      return function (a0, a1, a2, a3, a4) {
+        return fn.apply(this, arguments);
+      };
+
+    case 6:
+      return function (a0, a1, a2, a3, a4, a5) {
+        return fn.apply(this, arguments);
+      };
+
+    case 7:
+      return function (a0, a1, a2, a3, a4, a5, a6) {
+        return fn.apply(this, arguments);
+      };
+
+    case 8:
+      return function (a0, a1, a2, a3, a4, a5, a6, a7) {
+        return fn.apply(this, arguments);
+      };
+
+    case 9:
+      return function (a0, a1, a2, a3, a4, a5, a6, a7, a8) {
+        return fn.apply(this, arguments);
+      };
+
+    case 10:
+      return function (a0, a1, a2, a3, a4, a5, a6, a7, a8, a9) {
+        return fn.apply(this, arguments);
+      };
+
+    default:
+      throw new Error('First argument to _arity must be a non-negative integer no greater than ten');
+  }
+}
+
+/***/ }),
+/* 16 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1576,6 +1549,25 @@ module.exports = isInteger
     return this.xf['@@transducer/result'](result);
   }
 });
+
+/***/ }),
+/* 17 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/** @license ISC License (c) copyright 2017 original and current authors */
+/** @author Ian Hofmann-Hicks (evil) */
+
+var isNumber = __webpack_require__(57)
+
+// isInteger : a -> Boolean
+function isInteger(x) {
+  return isNumber(x)
+    && isFinite(x)
+    && Math.floor(x) === x
+}
+
+module.exports = isInteger
+
 
 /***/ }),
 /* 18 */
@@ -1610,14 +1602,144 @@ module.exports = isFunctor
 
 /***/ }),
 /* 20 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return _has; });
+function _has(prop, obj) {
+  return Object.prototype.hasOwnProperty.call(obj, prop);
+}
+
+/***/ }),
+/* 21 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+
+// EXTERNAL MODULE: ./node_modules/ramda/es/internal/_curry1.js
+var _curry1 = __webpack_require__(1);
+
+// EXTERNAL MODULE: ./node_modules/ramda/es/internal/_has.js
+var _has = __webpack_require__(20);
+
+// CONCATENATED MODULE: ./node_modules/ramda/es/internal/_isArguments.js
+
+var _isArguments_toString = Object.prototype.toString;
+
+var _isArguments_isArguments =
+/*#__PURE__*/
+function () {
+  return _isArguments_toString.call(arguments) === '[object Arguments]' ? function _isArguments(x) {
+    return _isArguments_toString.call(x) === '[object Arguments]';
+  } : function _isArguments(x) {
+    return Object(_has["a" /* default */])('callee', x);
+  };
+}();
+
+/* harmony default export */ var internal_isArguments = (_isArguments_isArguments);
+// CONCATENATED MODULE: ./node_modules/ramda/es/keys.js
+
+
+ // cover IE < 9 keys issues
+
+var hasEnumBug = !
+/*#__PURE__*/
+{
+  toString: null
+}.propertyIsEnumerable('toString');
+var nonEnumerableProps = ['constructor', 'valueOf', 'isPrototypeOf', 'toString', 'propertyIsEnumerable', 'hasOwnProperty', 'toLocaleString']; // Safari bug
+
+var hasArgsEnumBug =
+/*#__PURE__*/
+function () {
+  'use strict';
+
+  return arguments.propertyIsEnumerable('length');
+}();
+
+var contains = function contains(list, item) {
+  var idx = 0;
+
+  while (idx < list.length) {
+    if (list[idx] === item) {
+      return true;
+    }
+
+    idx += 1;
+  }
+
+  return false;
+};
+/**
+ * Returns a list containing the names of all the enumerable own properties of
+ * the supplied object.
+ * Note that the order of the output array is not guaranteed to be consistent
+ * across different JS platforms.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.1.0
+ * @category Object
+ * @sig {k: v} -> [k]
+ * @param {Object} obj The object to extract properties from
+ * @return {Array} An array of the object's own properties.
+ * @see R.keysIn, R.values
+ * @example
+ *
+ *      R.keys({a: 1, b: 2, c: 3}); //=> ['a', 'b', 'c']
+ */
+
+
+var keys_keys = typeof Object.keys === 'function' && !hasArgsEnumBug ?
+/*#__PURE__*/
+Object(_curry1["a" /* default */])(function keys(obj) {
+  return Object(obj) !== obj ? [] : Object.keys(obj);
+}) :
+/*#__PURE__*/
+Object(_curry1["a" /* default */])(function keys(obj) {
+  if (Object(obj) !== obj) {
+    return [];
+  }
+
+  var prop, nIdx;
+  var ks = [];
+
+  var checkArgsLength = hasArgsEnumBug && internal_isArguments(obj);
+
+  for (prop in obj) {
+    if (Object(_has["a" /* default */])(prop, obj) && (!checkArgsLength || prop !== 'length')) {
+      ks[ks.length] = prop;
+    }
+  }
+
+  if (hasEnumBug) {
+    nIdx = nonEnumerableProps.length - 1;
+
+    while (nIdx >= 0) {
+      prop = nonEnumerableProps[nIdx];
+
+      if (Object(_has["a" /* default */])(prop, obj) && !contains(ks, prop)) {
+        ks[ks.length] = prop;
+      }
+
+      nIdx -= 1;
+    }
+  }
+
+  return ks;
+});
+/* harmony default export */ var es_keys = __webpack_exports__["a"] = (keys_keys);
+
+/***/ }),
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /** @license ISC License (c) copyright 2016 original and current authors */
 /** @author Ian Hofmann-Hicks (evil) */
 
-var curry = __webpack_require__(8)
+var curry = __webpack_require__(9)
 var isFunction = __webpack_require__(7)
-var type = __webpack_require__(50)
+var type = __webpack_require__(52)
 
 // isSameType :: Container m => (m, m) -> Boolean
 function isSameType(x, y) {
@@ -1633,7 +1755,7 @@ module.exports = curry(isSameType)
 
 
 /***/ }),
-/* 21 */
+/* 23 */
 /***/ (function(module, exports) {
 
 /** @license ISC License (c) copyright 2017 original and current authors */
@@ -1688,7 +1810,7 @@ module.exports = {
 
 
 /***/ }),
-/* 22 */
+/* 24 */
 /***/ (function(module, exports) {
 
 /** @license ISC License (c) copyright 2017 original and current authors */
@@ -1702,13 +1824,13 @@ module.exports = isDefined
 
 
 /***/ }),
-/* 23 */
+/* 25 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var _curry1_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
-/* harmony import */ var _isArray_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(24);
-/* harmony import */ var _isString_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(39);
+/* harmony import */ var _isArray_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(26);
+/* harmony import */ var _isString_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(41);
 
 
 
@@ -1767,7 +1889,7 @@ Object(_curry1_js__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])(function isAr
 /* harmony default export */ __webpack_exports__["a"] = (_isArrayLike);
 
 /***/ }),
-/* 24 */
+/* 26 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1788,7 +1910,7 @@ Object(_curry1_js__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])(function isAr
 });
 
 /***/ }),
-/* 25 */
+/* 27 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1829,7 +1951,66 @@ function _concat(set1, set2) {
 }
 
 /***/ }),
-/* 26 */
+/* 28 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return _curry3; });
+/* harmony import */ var _curry1_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
+/* harmony import */ var _curry2_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(2);
+/* harmony import */ var _isPlaceholder_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(3);
+
+
+
+/**
+ * Optimized internal three-arity curry function.
+ *
+ * @private
+ * @category Function
+ * @param {Function} fn The function to curry.
+ * @return {Function} The curried function.
+ */
+
+function _curry3(fn) {
+  return function f3(a, b, c) {
+    switch (arguments.length) {
+      case 0:
+        return f3;
+
+      case 1:
+        return Object(_isPlaceholder_js__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"])(a) ? f3 : Object(_curry2_js__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"])(function (_b, _c) {
+          return fn(a, _b, _c);
+        });
+
+      case 2:
+        return Object(_isPlaceholder_js__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"])(a) && Object(_isPlaceholder_js__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"])(b) ? f3 : Object(_isPlaceholder_js__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"])(a) ? Object(_curry2_js__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"])(function (_a, _c) {
+          return fn(_a, b, _c);
+        }) : Object(_isPlaceholder_js__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"])(b) ? Object(_curry2_js__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"])(function (_b, _c) {
+          return fn(a, _b, _c);
+        }) : Object(_curry1_js__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])(function (_c) {
+          return fn(a, b, _c);
+        });
+
+      default:
+        return Object(_isPlaceholder_js__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"])(a) && Object(_isPlaceholder_js__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"])(b) && Object(_isPlaceholder_js__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"])(c) ? f3 : Object(_isPlaceholder_js__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"])(a) && Object(_isPlaceholder_js__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"])(b) ? Object(_curry2_js__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"])(function (_a, _b) {
+          return fn(_a, _b, c);
+        }) : Object(_isPlaceholder_js__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"])(a) && Object(_isPlaceholder_js__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"])(c) ? Object(_curry2_js__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"])(function (_a, _c) {
+          return fn(_a, b, _c);
+        }) : Object(_isPlaceholder_js__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"])(b) && Object(_isPlaceholder_js__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"])(c) ? Object(_curry2_js__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"])(function (_b, _c) {
+          return fn(a, _b, _c);
+        }) : Object(_isPlaceholder_js__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"])(a) ? Object(_curry1_js__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])(function (_a) {
+          return fn(_a, b, c);
+        }) : Object(_isPlaceholder_js__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"])(b) ? Object(_curry1_js__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])(function (_b) {
+          return fn(a, _b, c);
+        }) : Object(_isPlaceholder_js__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"])(c) ? Object(_curry1_js__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])(function (_c) {
+          return fn(a, b, _c);
+        }) : fn(a, b, c);
+    }
+  };
+}
+
+/***/ }),
+/* 29 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2276,7 +2457,7 @@ function fromIterable_runProducer (t, iterator, sink) {
 }
 
 // EXTERNAL MODULE: ./node_modules/symbol-observable/es/index.js
-var es = __webpack_require__(37);
+var es = __webpack_require__(39);
 
 // CONCATENATED MODULE: ./node_modules/most/src/observable/getObservable.js
 /** @license MIT License (c) copyright 2010-2016 original author or authors */
@@ -5727,7 +5908,7 @@ RecoverWithSink.prototype.dispose = function () {
 }
 
 // EXTERNAL MODULE: ./node_modules/@most/multicast/dist/multicast.es.js
-var multicast_es = __webpack_require__(30);
+var multicast_es = __webpack_require__(34);
 
 // CONCATENATED MODULE: ./node_modules/most/src/index.js
 /** @license MIT License (c) copyright 2010-2016 original author or authors */
@@ -6440,13 +6621,77 @@ Stream.prototype.multicast = function () {
 
 
 /***/ }),
-/* 27 */
+/* 30 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+
+// EXPORTS
+__webpack_require__.d(__webpack_exports__, "a", function() { return /* binding */ _dispatchable; });
+
+// EXTERNAL MODULE: ./node_modules/ramda/es/internal/_isArray.js
+var _isArray = __webpack_require__(26);
+
+// CONCATENATED MODULE: ./node_modules/ramda/es/internal/_isTransformer.js
+function _isTransformer(obj) {
+  return obj != null && typeof obj['@@transducer/step'] === 'function';
+}
+// CONCATENATED MODULE: ./node_modules/ramda/es/internal/_dispatchable.js
+
+
+/**
+ * Returns a function that dispatches with different strategies based on the
+ * object in list position (last argument). If it is an array, executes [fn].
+ * Otherwise, if it has a function with one of the given method names, it will
+ * execute that function (functor case). Otherwise, if it is a transformer,
+ * uses transducer [xf] to return a new transformer (transducer case).
+ * Otherwise, it will default to executing [fn].
+ *
+ * @private
+ * @param {Array} methodNames properties to check for a custom implementation
+ * @param {Function} xf transducer to initialize if object is transformer
+ * @param {Function} fn default ramda implementation
+ * @return {Function} A function that dispatches on object in list position
+ */
+
+function _dispatchable(methodNames, xf, fn) {
+  return function () {
+    if (arguments.length === 0) {
+      return fn();
+    }
+
+    var args = Array.prototype.slice.call(arguments, 0);
+    var obj = args.pop();
+
+    if (!Object(_isArray["a" /* default */])(obj)) {
+      var idx = 0;
+
+      while (idx < methodNames.length) {
+        if (typeof obj[methodNames[idx]] === 'function') {
+          return obj[methodNames[idx]].apply(obj, args);
+        }
+
+        idx += 1;
+      }
+
+      if (_isTransformer(obj)) {
+        var transducer = xf.apply(null, args);
+        return transducer(obj);
+      }
+    }
+
+    return fn.apply(this, arguments);
+  };
+}
+
+/***/ }),
+/* 31 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return create; });
-/* harmony import */ var most__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(26);
-/* harmony import */ var _most_multicast__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(30);
+/* harmony import */ var most__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(29);
+/* harmony import */ var _most_multicast__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(34);
 
 
 
@@ -6606,7 +6851,7 @@ function create (run) {
 
 
 /***/ }),
-/* 28 */
+/* 32 */
 /***/ (function(module, exports) {
 
 /** @license ISC License (c) copyright 2018 original and current authors */
@@ -6633,14 +6878,14 @@ module.exports = {
 
 
 /***/ }),
-/* 29 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /** @license ISC License (c) copyright 2016 original and current authors */
 /** @author Ian Hofmann-Hicks (evil) */
 
 var hasAlg = __webpack_require__(5)
-var isApply = __webpack_require__(36)
+var isApply = __webpack_require__(38)
 
 // isApplicative : a -> Boolean
 function isApplicative(m) {
@@ -6652,7 +6897,7 @@ module.exports = isApplicative
 
 
 /***/ }),
-/* 30 */
+/* 34 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6768,137 +7013,14 @@ function multicast (stream) {
 
 
 /***/ }),
-/* 31 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return _curry3; });
-/* harmony import */ var _curry1_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
-/* harmony import */ var _curry2_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(3);
-/* harmony import */ var _isPlaceholder_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(2);
-
-
-
-/**
- * Optimized internal three-arity curry function.
- *
- * @private
- * @category Function
- * @param {Function} fn The function to curry.
- * @return {Function} The curried function.
- */
-
-function _curry3(fn) {
-  return function f3(a, b, c) {
-    switch (arguments.length) {
-      case 0:
-        return f3;
-
-      case 1:
-        return Object(_isPlaceholder_js__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"])(a) ? f3 : Object(_curry2_js__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"])(function (_b, _c) {
-          return fn(a, _b, _c);
-        });
-
-      case 2:
-        return Object(_isPlaceholder_js__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"])(a) && Object(_isPlaceholder_js__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"])(b) ? f3 : Object(_isPlaceholder_js__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"])(a) ? Object(_curry2_js__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"])(function (_a, _c) {
-          return fn(_a, b, _c);
-        }) : Object(_isPlaceholder_js__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"])(b) ? Object(_curry2_js__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"])(function (_b, _c) {
-          return fn(a, _b, _c);
-        }) : Object(_curry1_js__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])(function (_c) {
-          return fn(a, b, _c);
-        });
-
-      default:
-        return Object(_isPlaceholder_js__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"])(a) && Object(_isPlaceholder_js__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"])(b) && Object(_isPlaceholder_js__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"])(c) ? f3 : Object(_isPlaceholder_js__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"])(a) && Object(_isPlaceholder_js__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"])(b) ? Object(_curry2_js__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"])(function (_a, _b) {
-          return fn(_a, _b, c);
-        }) : Object(_isPlaceholder_js__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"])(a) && Object(_isPlaceholder_js__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"])(c) ? Object(_curry2_js__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"])(function (_a, _c) {
-          return fn(_a, b, _c);
-        }) : Object(_isPlaceholder_js__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"])(b) && Object(_isPlaceholder_js__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"])(c) ? Object(_curry2_js__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"])(function (_b, _c) {
-          return fn(a, _b, _c);
-        }) : Object(_isPlaceholder_js__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"])(a) ? Object(_curry1_js__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])(function (_a) {
-          return fn(_a, b, c);
-        }) : Object(_isPlaceholder_js__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"])(b) ? Object(_curry1_js__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])(function (_b) {
-          return fn(a, _b, c);
-        }) : Object(_isPlaceholder_js__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"])(c) ? Object(_curry1_js__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])(function (_c) {
-          return fn(a, b, _c);
-        }) : fn(a, b, c);
-    }
-  };
-}
-
-/***/ }),
-/* 32 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-
-// EXPORTS
-__webpack_require__.d(__webpack_exports__, "a", function() { return /* binding */ _dispatchable; });
-
-// EXTERNAL MODULE: ./node_modules/ramda/es/internal/_isArray.js
-var _isArray = __webpack_require__(24);
-
-// CONCATENATED MODULE: ./node_modules/ramda/es/internal/_isTransformer.js
-function _isTransformer(obj) {
-  return obj != null && typeof obj['@@transducer/step'] === 'function';
-}
-// CONCATENATED MODULE: ./node_modules/ramda/es/internal/_dispatchable.js
-
-
-/**
- * Returns a function that dispatches with different strategies based on the
- * object in list position (last argument). If it is an array, executes [fn].
- * Otherwise, if it has a function with one of the given method names, it will
- * execute that function (functor case). Otherwise, if it is a transformer,
- * uses transducer [xf] to return a new transformer (transducer case).
- * Otherwise, it will default to executing [fn].
- *
- * @private
- * @param {Array} methodNames properties to check for a custom implementation
- * @param {Function} xf transducer to initialize if object is transformer
- * @param {Function} fn default ramda implementation
- * @return {Function} A function that dispatches on object in list position
- */
-
-function _dispatchable(methodNames, xf, fn) {
-  return function () {
-    if (arguments.length === 0) {
-      return fn();
-    }
-
-    var args = Array.prototype.slice.call(arguments, 0);
-    var obj = args.pop();
-
-    if (!Object(_isArray["a" /* default */])(obj)) {
-      var idx = 0;
-
-      while (idx < methodNames.length) {
-        if (typeof obj[methodNames[idx]] === 'function') {
-          return obj[methodNames[idx]].apply(obj, args);
-        }
-
-        idx += 1;
-      }
-
-      if (_isTransformer(obj)) {
-        var transducer = xf.apply(null, args);
-        return transducer(obj);
-      }
-    }
-
-    return fn.apply(this, arguments);
-  };
-}
-
-/***/ }),
-/* 33 */
+/* 35 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* unused harmony export overloadForFunctions */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ioToStream; });
-/* harmony import */ var _most_create__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(27);
-/* harmony import */ var crocks_predicates__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(38);
+/* harmony import */ var _most_create__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(31);
+/* harmony import */ var crocks_predicates__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(40);
 /* harmony import */ var crocks_predicates__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(crocks_predicates__WEBPACK_IMPORTED_MODULE_1__);
 
 
@@ -6919,7 +7041,7 @@ const ioToStream = overloadForFunctions((io) =>
 
 
 /***/ }),
-/* 34 */
+/* 36 */
 /***/ (function(module, exports) {
 
 /** @license ISC License (c) copyright 2016 original and current authors */
@@ -6937,17 +7059,17 @@ module.exports = isObject
 
 
 /***/ }),
-/* 35 */
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /** @license ISC License (c) copyright 2017 original and current authors */
 /** @author Ian Hofmann-Hicks (evil) */
 
-var isSameType = __webpack_require__(20)
-var isSame = __webpack_require__(51)
+var isSameType = __webpack_require__(22)
+var isSame = __webpack_require__(53)
 var hasAlg = __webpack_require__(5)
-var type = __webpack_require__(50)
-var fl = __webpack_require__(28)
+var type = __webpack_require__(52)
+var fl = __webpack_require__(32)
 
 var comp = function (a, b) { return a.valueOf() === b.valueOf(); }
 
@@ -6999,7 +7121,7 @@ module.exports = equals
 
 
 /***/ }),
-/* 36 */
+/* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /** @license ISC License (c) copyright 2016 original and current authors */
@@ -7018,11 +7140,11 @@ module.exports = isApply
 
 
 /***/ }),
-/* 37 */
+/* 39 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(global, module) {/* harmony import */ var _ponyfill_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(64);
+/* WEBPACK VAR INJECTION */(function(global, module) {/* harmony import */ var _ponyfill_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(67);
 /* global window */
 
 
@@ -7041,68 +7163,68 @@ if (typeof self !== 'undefined') {
 var result = Object(_ponyfill_js__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])(root);
 /* harmony default export */ __webpack_exports__["a"] = (result);
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(73), __webpack_require__(74)(module)))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(76), __webpack_require__(77)(module)))
 
 /***/ }),
-/* 38 */
+/* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = {
-  hasProp: __webpack_require__(75),
-  hasProps: __webpack_require__(76),
-  hasPropPath: __webpack_require__(77),
-  isAlt: __webpack_require__(78),
-  isAlternative: __webpack_require__(79),
-  isApplicative: __webpack_require__(80),
-  isApply: __webpack_require__(81),
-  isArray: __webpack_require__(82),
-  isBifunctor: __webpack_require__(83),
-  isBichain: __webpack_require__(85),
-  isBoolean: __webpack_require__(87),
-  isCategory: __webpack_require__(88),
-  isChain: __webpack_require__(89),
-  isContravariant: __webpack_require__(91),
-  isDate: __webpack_require__(92),
-  isDefined: __webpack_require__(93),
-  isEmpty: __webpack_require__(94),
-  isExtend: __webpack_require__(95),
-  isFalse: __webpack_require__(97),
-  isFalsy: __webpack_require__(98),
-  isFoldable: __webpack_require__(99),
-  isFunction: __webpack_require__(100),
-  isFunctor: __webpack_require__(101),
-  isInteger: __webpack_require__(102),
-  isIterable: __webpack_require__(103),
-  isMap: __webpack_require__(105),
-  isMonad: __webpack_require__(107),
-  isMonoid: __webpack_require__(108),
-  isNil: __webpack_require__(109),
-  isNumber: __webpack_require__(110),
-  isObject: __webpack_require__(111),
-  isPlus: __webpack_require__(112),
-  isProfunctor: __webpack_require__(113),
-  isPromise: __webpack_require__(115),
-  isSame: __webpack_require__(117),
-  isSameType: __webpack_require__(118),
-  isSemigroup: __webpack_require__(119),
-  isSemigroupoid: __webpack_require__(120),
-  isSetoid: __webpack_require__(121),
-  isString: __webpack_require__(122),
-  isSymbol: __webpack_require__(123),
-  isTraversable: __webpack_require__(124),
-  isTrue: __webpack_require__(125),
-  isTruthy: __webpack_require__(126),
-  pathEq: __webpack_require__(61),
-  pathSatisfies: __webpack_require__(62),
-  propEq: __webpack_require__(127),
-  propPathEq: __webpack_require__(128),
-  propSatisfies: __webpack_require__(129),
-  propPathSatisfies: __webpack_require__(130)
+  hasProp: __webpack_require__(78),
+  hasProps: __webpack_require__(79),
+  hasPropPath: __webpack_require__(80),
+  isAlt: __webpack_require__(81),
+  isAlternative: __webpack_require__(82),
+  isApplicative: __webpack_require__(83),
+  isApply: __webpack_require__(84),
+  isArray: __webpack_require__(85),
+  isBifunctor: __webpack_require__(86),
+  isBichain: __webpack_require__(88),
+  isBoolean: __webpack_require__(90),
+  isCategory: __webpack_require__(91),
+  isChain: __webpack_require__(92),
+  isContravariant: __webpack_require__(94),
+  isDate: __webpack_require__(95),
+  isDefined: __webpack_require__(96),
+  isEmpty: __webpack_require__(97),
+  isExtend: __webpack_require__(98),
+  isFalse: __webpack_require__(100),
+  isFalsy: __webpack_require__(101),
+  isFoldable: __webpack_require__(102),
+  isFunction: __webpack_require__(103),
+  isFunctor: __webpack_require__(104),
+  isInteger: __webpack_require__(105),
+  isIterable: __webpack_require__(106),
+  isMap: __webpack_require__(108),
+  isMonad: __webpack_require__(110),
+  isMonoid: __webpack_require__(111),
+  isNil: __webpack_require__(112),
+  isNumber: __webpack_require__(113),
+  isObject: __webpack_require__(114),
+  isPlus: __webpack_require__(115),
+  isProfunctor: __webpack_require__(116),
+  isPromise: __webpack_require__(118),
+  isSame: __webpack_require__(120),
+  isSameType: __webpack_require__(121),
+  isSemigroup: __webpack_require__(122),
+  isSemigroupoid: __webpack_require__(123),
+  isSetoid: __webpack_require__(124),
+  isString: __webpack_require__(65),
+  isSymbol: __webpack_require__(125),
+  isTraversable: __webpack_require__(126),
+  isTrue: __webpack_require__(127),
+  isTruthy: __webpack_require__(128),
+  pathEq: __webpack_require__(63),
+  pathSatisfies: __webpack_require__(64),
+  propEq: __webpack_require__(129),
+  propPathEq: __webpack_require__(130),
+  propSatisfies: __webpack_require__(131),
+  propPathSatisfies: __webpack_require__(132)
 }
 
 
 /***/ }),
-/* 39 */
+/* 41 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -7112,7 +7234,26 @@ function _isString(x) {
 }
 
 /***/ }),
-/* 40 */
+/* 42 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return _map; });
+function _map(fn, functor) {
+  var idx = 0;
+  var len = functor.length;
+  var result = Array(len);
+
+  while (idx < len) {
+    result[idx] = fn(functor[idx]);
+    idx += 1;
+  }
+
+  return result;
+}
+
+/***/ }),
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /** @license ISC License (c) copyright 2016 original and current authors */
@@ -7131,7 +7272,7 @@ module.exports = isSemigroup
 
 
 /***/ }),
-/* 41 */
+/* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /** @license ISC License (c) copyright 2017 original and current authors */
@@ -7150,16 +7291,16 @@ module.exports = predOrFunc
 
 
 /***/ }),
-/* 42 */
+/* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /** @license ISC License (c) copyright 2018 original and current authors */
 /** @author Dale Francis (dalefrancis88) */
 
-var Pred = __webpack_require__(21).proxy('Pred')
+var Pred = __webpack_require__(23).proxy('Pred')
 
 var isFunction = __webpack_require__(7)
-var isSameType = __webpack_require__(20)
+var isSameType = __webpack_require__(22)
 
 // isPredOrFunc :: ((a -> b) | pred) -> bool
 var isPredOrFunc = function (predOrFunc) { return isFunction(predOrFunc) || isSameType(Pred, predOrFunc); }
@@ -7168,13 +7309,13 @@ module.exports = isPredOrFunc
 
 
 /***/ }),
-/* 43 */
+/* 46 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var _internal_concat_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(25);
-/* harmony import */ var _internal_curry2_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(3);
-/* harmony import */ var _internal_reduce_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(9);
+/* harmony import */ var _internal_concat_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(27);
+/* harmony import */ var _internal_curry2_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(2);
+/* harmony import */ var _internal_reduce_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(8);
 /* harmony import */ var _map_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(11);
 
 
@@ -7220,135 +7361,14 @@ Object(_internal_curry2_js__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"])(func
 /* harmony default export */ __webpack_exports__["a"] = (ap);
 
 /***/ }),
-/* 44 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-
-// EXTERNAL MODULE: ./node_modules/ramda/es/internal/_curry1.js
-var _curry1 = __webpack_require__(1);
-
-// CONCATENATED MODULE: ./node_modules/ramda/es/internal/_has.js
-function _has(prop, obj) {
-  return Object.prototype.hasOwnProperty.call(obj, prop);
-}
-// CONCATENATED MODULE: ./node_modules/ramda/es/internal/_isArguments.js
-
-var _isArguments_toString = Object.prototype.toString;
-
-var _isArguments_isArguments =
-/*#__PURE__*/
-function () {
-  return _isArguments_toString.call(arguments) === '[object Arguments]' ? function _isArguments(x) {
-    return _isArguments_toString.call(x) === '[object Arguments]';
-  } : function _isArguments(x) {
-    return _has('callee', x);
-  };
-}();
-
-/* harmony default export */ var internal_isArguments = (_isArguments_isArguments);
-// CONCATENATED MODULE: ./node_modules/ramda/es/keys.js
-
-
- // cover IE < 9 keys issues
-
-var hasEnumBug = !
-/*#__PURE__*/
-{
-  toString: null
-}.propertyIsEnumerable('toString');
-var nonEnumerableProps = ['constructor', 'valueOf', 'isPrototypeOf', 'toString', 'propertyIsEnumerable', 'hasOwnProperty', 'toLocaleString']; // Safari bug
-
-var hasArgsEnumBug =
-/*#__PURE__*/
-function () {
-  'use strict';
-
-  return arguments.propertyIsEnumerable('length');
-}();
-
-var contains = function contains(list, item) {
-  var idx = 0;
-
-  while (idx < list.length) {
-    if (list[idx] === item) {
-      return true;
-    }
-
-    idx += 1;
-  }
-
-  return false;
-};
-/**
- * Returns a list containing the names of all the enumerable own properties of
- * the supplied object.
- * Note that the order of the output array is not guaranteed to be consistent
- * across different JS platforms.
- *
- * @func
- * @memberOf R
- * @since v0.1.0
- * @category Object
- * @sig {k: v} -> [k]
- * @param {Object} obj The object to extract properties from
- * @return {Array} An array of the object's own properties.
- * @see R.keysIn, R.values
- * @example
- *
- *      R.keys({a: 1, b: 2, c: 3}); //=> ['a', 'b', 'c']
- */
-
-
-var keys_keys = typeof Object.keys === 'function' && !hasArgsEnumBug ?
-/*#__PURE__*/
-Object(_curry1["a" /* default */])(function keys(obj) {
-  return Object(obj) !== obj ? [] : Object.keys(obj);
-}) :
-/*#__PURE__*/
-Object(_curry1["a" /* default */])(function keys(obj) {
-  if (Object(obj) !== obj) {
-    return [];
-  }
-
-  var prop, nIdx;
-  var ks = [];
-
-  var checkArgsLength = hasArgsEnumBug && internal_isArguments(obj);
-
-  for (prop in obj) {
-    if (_has(prop, obj) && (!checkArgsLength || prop !== 'length')) {
-      ks[ks.length] = prop;
-    }
-  }
-
-  if (hasEnumBug) {
-    nIdx = nonEnumerableProps.length - 1;
-
-    while (nIdx >= 0) {
-      prop = nonEnumerableProps[nIdx];
-
-      if (_has(prop, obj) && !contains(ks, prop)) {
-        ks[ks.length] = prop;
-      }
-
-      nIdx -= 1;
-    }
-  }
-
-  return ks;
-});
-/* harmony default export */ var es_keys = __webpack_exports__["a"] = (keys_keys);
-
-/***/ }),
-/* 45 */
+/* 47 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return getChromeMessages; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return sendChromeMessageToActiveTab; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return sendChromeMessageToPopup; });
-/* harmony import */ var _most_create__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(27);
+/* harmony import */ var _most_create__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(31);
 
 
 // getChromeMessages :: () -> Stream a
@@ -7373,7 +7393,7 @@ const sendChromeMessageToPopup = (data) =>
 
 
 /***/ }),
-/* 46 */
+/* 48 */
 /***/ (function(module, exports) {
 
 /** @license ISC License (c) copyright 2017 original and current authors */
@@ -7386,7 +7406,7 @@ module.exports = fulfills
 
 
 /***/ }),
-/* 47 */
+/* 49 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /** @license ISC License (c) copyright 2016 original and current authors */
@@ -7394,10 +7414,10 @@ module.exports = fulfills
 
 var isArray = __webpack_require__(18)
 var isFunction = __webpack_require__(7)
-var isObject = __webpack_require__(34)
+var isObject = __webpack_require__(36)
 var isString = __webpack_require__(10)
-var isSymbol = __webpack_require__(52)
-var isDate = __webpack_require__(53)
+var isSymbol = __webpack_require__(54)
+var isDate = __webpack_require__(55)
 
 function arrayInspect(xs) {
   return xs.length
@@ -7440,15 +7460,15 @@ module.exports = inspect
 
 
 /***/ }),
-/* 48 */,
-/* 49 */
+/* 50 */,
+/* 51 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /** @license ISC License (c) copyright 2016 original and current authors */
 /** @author Ian Hofmann-Hicks (evil) */
 
 var hasAlg = __webpack_require__(5)
-var isSemigroup = __webpack_require__(40)
+var isSemigroup = __webpack_require__(43)
 
 // isMonoid :: a -> Boolean
 function isMonoid(m) {
@@ -7460,7 +7480,7 @@ module.exports = isMonoid
 
 
 /***/ }),
-/* 50 */
+/* 52 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /** @license ISC License (c) copyright 2017 original and current authors */
@@ -7481,7 +7501,7 @@ module.exports = type
 
 
 /***/ }),
-/* 51 */
+/* 53 */
 /***/ (function(module, exports) {
 
 /** @license ISC License (c) copyright 2017 original and current authors */
@@ -7500,7 +7520,7 @@ module.exports = isSame
 
 
 /***/ }),
-/* 52 */
+/* 54 */
 /***/ (function(module, exports) {
 
 /** @license ISC License (c) copyright 2018 original and current authors */
@@ -7515,7 +7535,7 @@ module.exports = isSymbol
 
 
 /***/ }),
-/* 53 */
+/* 55 */
 /***/ (function(module, exports) {
 
 /** @license ISC License (c) copyright 2018 original and current authors */
@@ -7532,7 +7552,7 @@ module.exports = isDate
 
 
 /***/ }),
-/* 54 */
+/* 56 */
 /***/ (function(module, exports) {
 
 /** @license ISC License (c) copyright 2016 original and current authors */
@@ -7550,7 +7570,7 @@ module.exports = compose
 
 
 /***/ }),
-/* 55 */
+/* 57 */
 /***/ (function(module, exports) {
 
 /** @license ISC License (c) copyright 2016 original and current authors */
@@ -7566,7 +7586,7 @@ module.exports = isNumber
 
 
 /***/ }),
-/* 56 */
+/* 58 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /** @license ISC License (c) copyright 2017 original and current authors */
@@ -7584,7 +7604,7 @@ module.exports = isFoldable
 
 
 /***/ }),
-/* 57 */
+/* 59 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /** @license ISC License (c) copyright 2017 original and current authors */
@@ -7603,14 +7623,14 @@ module.exports = isAlt
 
 
 /***/ }),
-/* 58 */
+/* 60 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /** @license ISC License (c) copyright 2016 original and current authors */
 /** @author Ian Hofmann-Hicks (evil) */
 
 var hasAlg = __webpack_require__(5)
-var isAlt = __webpack_require__(57)
+var isAlt = __webpack_require__(59)
 
 // isPlus : a -> Boolean
 function isPlus(m) {
@@ -7622,7 +7642,7 @@ module.exports = isPlus
 
 
 /***/ }),
-/* 59 */
+/* 61 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /** @license ISC License (c) copyright 2017 original and current authors */
@@ -7639,7 +7659,7 @@ module.exports = isSemigroupoid
 
 
 /***/ }),
-/* 60 */
+/* 62 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /** @license ISC License (c) copyright 2017 original and current authors */
@@ -7656,20 +7676,20 @@ module.exports = isContravariant
 
 
 /***/ }),
-/* 61 */
+/* 63 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /** @license ISC License (c) copyright 2019 original and current authors */
 /** @author Karthik Iyengar (karthikiyengar) */
 /** @author Ian Hofmann-Hicks */
 
-var curry = __webpack_require__(8)
-var equals = __webpack_require__(35)
+var curry = __webpack_require__(9)
+var equals = __webpack_require__(37)
 var isArray = __webpack_require__(18)
-var isDefined = __webpack_require__(22)
-var isEmpty  = __webpack_require__(12)
-var isInteger = __webpack_require__(16)
-var isNil = __webpack_require__(13)
+var isDefined = __webpack_require__(24)
+var isEmpty  = __webpack_require__(13)
+var isInteger = __webpack_require__(17)
+var isNil = __webpack_require__(14)
 var isString = __webpack_require__(10)
 
 var err = function (name) { return (name + ": First argument must be an Array of non-empty Strings or Integers"); }
@@ -7720,20 +7740,20 @@ module.exports = pathEq
 
 
 /***/ }),
-/* 62 */
+/* 64 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /** @license ISC License (c) copyright 2019 original and current authors */
 /** @author Ian Hofmann-Hicks (evilsoft) */
 
-var curry = __webpack_require__(8)
+var curry = __webpack_require__(9)
 var isArray = __webpack_require__(18)
-var isEmpty  = __webpack_require__(12)
-var isInteger = __webpack_require__(16)
-var isNil = __webpack_require__(13)
-var isPredOrFunc = __webpack_require__(42)
+var isEmpty  = __webpack_require__(13)
+var isInteger = __webpack_require__(17)
+var isNil = __webpack_require__(14)
+var isPredOrFunc = __webpack_require__(45)
 var isString = __webpack_require__(10)
-var predOrFunc = __webpack_require__(41)
+var predOrFunc = __webpack_require__(44)
 
 var err = function (name) { return (name + ": First argument must be an Array of non-empty Strings or Integers"); }
 
@@ -7786,19 +7806,30 @@ module.exports = pathSatisfies
 
 
 /***/ }),
-/* 63 */
+/* 65 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/** @license ISC License (c) copyright 2017 original and current authors */
+/** @author Ian Hofmann-Hicks (evil) */
+
+module.exports =
+  __webpack_require__(10)
+
+
+/***/ }),
+/* 66 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /** @license ISC License (c) copyright 2016 original and current authors */
 /** @author Ian Hofmann-Hicks (evil) */
 
-var ref = __webpack_require__(68);
+var ref = __webpack_require__(71);
 var Nothing = ref.Nothing;
 var Just = ref.Just;
-var predOrFunc = __webpack_require__(41)
+var predOrFunc = __webpack_require__(44)
 
-var curry = __webpack_require__(8)
-var isPredOrFunc = __webpack_require__(42)
+var curry = __webpack_require__(9)
+var isPredOrFunc = __webpack_require__(45)
 
 // safe : ((a -> Boolean) | Pred) -> a -> Maybe a
 function safe(pred, x) {
@@ -7815,7 +7846,7 @@ module.exports = curry(safe)
 
 
 /***/ }),
-/* 64 */
+/* 67 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -7840,7 +7871,7 @@ function symbolObservablePonyfill(root) {
 
 
 /***/ }),
-/* 65 */
+/* 68 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -7849,7 +7880,7 @@ function symbolObservablePonyfill(root) {
 __webpack_require__.d(__webpack_exports__, "a", function() { return /* binding */ pipe; });
 
 // EXTERNAL MODULE: ./node_modules/ramda/es/internal/_arity.js
-var _arity = __webpack_require__(14);
+var _arity = __webpack_require__(15);
 
 // CONCATENATED MODULE: ./node_modules/ramda/es/internal/_pipe.js
 function _pipe(f, g) {
@@ -7858,10 +7889,10 @@ function _pipe(f, g) {
   };
 }
 // EXTERNAL MODULE: ./node_modules/ramda/es/internal/_curry3.js
-var _curry3 = __webpack_require__(31);
+var _curry3 = __webpack_require__(28);
 
 // EXTERNAL MODULE: ./node_modules/ramda/es/internal/_reduce.js + 2 modules
-var _reduce = __webpack_require__(9);
+var _reduce = __webpack_require__(8);
 
 // CONCATENATED MODULE: ./node_modules/ramda/es/reduce.js
 
@@ -7919,7 +7950,7 @@ Object(_curry3["a" /* default */])(_reduce["a" /* default */]);
 
 /* harmony default export */ var es_reduce = (reduce);
 // EXTERNAL MODULE: ./node_modules/ramda/es/internal/_isArray.js
-var _isArray = __webpack_require__(24);
+var _isArray = __webpack_require__(26);
 
 // CONCATENATED MODULE: ./node_modules/ramda/es/internal/_checkForMethod.js
 
@@ -8065,19 +8096,19 @@ function pipe() {
 }
 
 /***/ }),
-/* 66 */
+/* 69 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 
 // EXTERNAL MODULE: ./node_modules/ramda/es/internal/_curry2.js
-var _curry2 = __webpack_require__(3);
+var _curry2 = __webpack_require__(2);
 
 // EXTERNAL MODULE: ./node_modules/ramda/es/internal/_dispatchable.js + 1 modules
-var _dispatchable = __webpack_require__(32);
+var _dispatchable = __webpack_require__(30);
 
 // EXTERNAL MODULE: ./node_modules/ramda/es/internal/_isArrayLike.js
-var _isArrayLike = __webpack_require__(23);
+var _isArrayLike = __webpack_require__(25);
 
 // CONCATENATED MODULE: ./node_modules/ramda/es/internal/_makeFlat.js
 
@@ -8123,10 +8154,10 @@ function _forceReduced(x) {
   };
 }
 // EXTERNAL MODULE: ./node_modules/ramda/es/internal/_reduce.js + 2 modules
-var _reduce = __webpack_require__(9);
+var _reduce = __webpack_require__(8);
 
 // EXTERNAL MODULE: ./node_modules/ramda/es/internal/_xfBase.js
-var _xfBase = __webpack_require__(17);
+var _xfBase = __webpack_require__(16);
 
 // CONCATENATED MODULE: ./node_modules/ramda/es/internal/_flatCat.js
 
@@ -8161,7 +8192,7 @@ var _flatCat = function _xcat(xf) {
 };
 
 /* harmony default export */ var internal_flatCat = (_flatCat);
-// EXTERNAL MODULE: ./node_modules/ramda/es/map.js + 2 modules
+// EXTERNAL MODULE: ./node_modules/ramda/es/map.js + 1 modules
 var map = __webpack_require__(11);
 
 // CONCATENATED MODULE: ./node_modules/ramda/es/internal/_xchain.js
@@ -8226,14 +8257,14 @@ Object(_dispatchable["a" /* default */])(['fantasy-land/chain', 'chain'], intern
 /* harmony default export */ var es_chain = __webpack_exports__["a"] = (chain_chain);
 
 /***/ }),
-/* 67 */
+/* 70 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /** @license ISC License (c) copyright 2017 original and current authors */
 /** @author Ian Hofmann-Hicks (evil) */
 
 var hasAlg = __webpack_require__(5)
-var isApplicative = __webpack_require__(29)
+var isApplicative = __webpack_require__(33)
 
 // isMonad : a -> Boolean
 function isMonad(m) {
@@ -8246,7 +8277,7 @@ module.exports = isMonad
 
 
 /***/ }),
-/* 68 */
+/* 71 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /** @license ISC License (c) copyright 2016 original and current authors */
@@ -8254,22 +8285,22 @@ module.exports = isMonad
 
 var VERSION = 4
 
-var _defineUnion = __webpack_require__(69)
-var _equals = __webpack_require__(35)
-var _implements = __webpack_require__(46)
-var _innerConcat = __webpack_require__(70)
-var _inspect = __webpack_require__(47)
-var type = __webpack_require__(21).type('Maybe')
-var _type = __webpack_require__(21).typeFn(type(), VERSION)
-var fl = __webpack_require__(28)
+var _defineUnion = __webpack_require__(72)
+var _equals = __webpack_require__(37)
+var _implements = __webpack_require__(48)
+var _innerConcat = __webpack_require__(73)
+var _inspect = __webpack_require__(49)
+var type = __webpack_require__(23).type('Maybe')
+var _type = __webpack_require__(23).typeFn(type(), VERSION)
+var fl = __webpack_require__(32)
 
-var apOrFunc = __webpack_require__(71)
-var compose = __webpack_require__(54)
-var isApplicative = __webpack_require__(29)
-var isApply = __webpack_require__(36)
+var apOrFunc = __webpack_require__(74)
+var compose = __webpack_require__(56)
+var isApplicative = __webpack_require__(33)
+var isApply = __webpack_require__(38)
 var isArray = __webpack_require__(18)
 var isFunction = __webpack_require__(7)
-var isSameType = __webpack_require__(20)
+var isSameType = __webpack_require__(22)
 
 var constant = function (x) { return function () { return x; }; }
 var identity = function (x) { return x; }
@@ -8518,17 +8549,17 @@ module.exports = Maybe
 
 
 /***/ }),
-/* 69 */
+/* 72 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /** @license ISC License (c) copyright 2016 original and current authors */
 /** @author Ian Hofmann-Hicks (evil) */
 
-var curry = __webpack_require__(8)
+var curry = __webpack_require__(9)
 var isArray = __webpack_require__(18)
-var isEmpty = __webpack_require__(12)
+var isEmpty = __webpack_require__(13)
 var isFunction = __webpack_require__(7)
-var isObject = __webpack_require__(34)
+var isObject = __webpack_require__(36)
 var isString = __webpack_require__(10)
 
 var constant = function (x) { return function () { return x; }; }
@@ -8587,14 +8618,14 @@ module.exports = defineUnion
 
 
 /***/ }),
-/* 70 */
+/* 73 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /** @license ISC License (c) copyright 2017 original and current authors */
 /** @author Ian Hofmann-Hicks (evil) */
 
-var isSameType = __webpack_require__(20)
-var isSemigroup = __webpack_require__(40)
+var isSameType = __webpack_require__(22)
+var isSemigroup = __webpack_require__(43)
 
 function innerConcat(method, m) {
   return function(left) {
@@ -8616,14 +8647,14 @@ module.exports = innerConcat
 
 
 /***/ }),
-/* 71 */
+/* 74 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /** @license ISC License (c) copyright 2018 original and current authors */
 /** @author Ian Hofmann-Hicks (evil) */
 
-var isApplicative = __webpack_require__(29)
-var isTypeRepOf = __webpack_require__(72)
+var isApplicative = __webpack_require__(33)
+var isTypeRepOf = __webpack_require__(75)
 
 var apOrFunc = function (af) { return function (x) { return isApplicative(af)
     ? af.of(x)
@@ -8633,7 +8664,7 @@ module.exports = apOrFunc
 
 
 /***/ }),
-/* 72 */
+/* 75 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /** @license ISC License (c) copyright 2018 original and current authors */
@@ -8648,7 +8679,7 @@ module.exports = isTypeRepOf
 
 
 /***/ }),
-/* 73 */
+/* 76 */
 /***/ (function(module, exports) {
 
 var g;
@@ -8674,7 +8705,7 @@ module.exports = g;
 
 
 /***/ }),
-/* 74 */
+/* 77 */
 /***/ (function(module, exports) {
 
 module.exports = function(originalModule) {
@@ -8704,17 +8735,17 @@ module.exports = function(originalModule) {
 
 
 /***/ }),
-/* 75 */
+/* 78 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /** @license ISC License (c) copyright 2017 original and current authors */
 /** @author Ian Hofmann-Hicks (evil) */
 
-var curry = __webpack_require__(8)
-var isDefined = __webpack_require__(22)
-var isEmpty = __webpack_require__(12)
-var isInteger = __webpack_require__(16)
-var isNil = __webpack_require__(13)
+var curry = __webpack_require__(9)
+var isDefined = __webpack_require__(24)
+var isEmpty = __webpack_require__(13)
+var isInteger = __webpack_require__(17)
+var isNil = __webpack_require__(14)
 var isString = __webpack_require__(10)
 
 // hasProp : (String | Integer) -> a -> Boolean
@@ -8736,18 +8767,18 @@ module.exports = curry(hasProp)
 
 
 /***/ }),
-/* 76 */
+/* 79 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /** @license ISC License (c) copyright 2019 original and current authors */
 /** @author Dale Francis (dalefrancis88) */
 
-var curry = __webpack_require__(8)
-var isDefined = __webpack_require__(22)
-var isEmpty = __webpack_require__(12)
-var isFoldable = __webpack_require__(56)
-var isInteger = __webpack_require__(16)
-var isNil = __webpack_require__(13)
+var curry = __webpack_require__(9)
+var isDefined = __webpack_require__(24)
+var isEmpty = __webpack_require__(13)
+var isFoldable = __webpack_require__(58)
+var isInteger = __webpack_require__(17)
+var isNil = __webpack_require__(14)
 var isString = __webpack_require__(10)
 
 // err :: String
@@ -8791,18 +8822,18 @@ module.exports = curry(hasProps)
 
 
 /***/ }),
-/* 77 */
+/* 80 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /** @license ISC License (c) copyright 2017 original and current authors */
 /** @author Ian Hofmann-Hicks (evil) */
 
-var curry = __webpack_require__(8)
+var curry = __webpack_require__(9)
 var isArray = __webpack_require__(18)
-var isDefined = __webpack_require__(22)
-var isEmpty = __webpack_require__(12)
-var isInteger = __webpack_require__(16)
-var isNil = __webpack_require__(13)
+var isDefined = __webpack_require__(24)
+var isEmpty = __webpack_require__(13)
+var isInteger = __webpack_require__(17)
+var isNil = __webpack_require__(14)
 var isString = __webpack_require__(10)
 
 // hasPropPath : [ String | Integer ] -> a -> Boolean
@@ -8846,25 +8877,25 @@ module.exports = curry(hasPropPath)
 
 
 /***/ }),
-/* 78 */
+/* 81 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /** @license ISC License (c) copyright 2017 original and current authors */
 /** @author Ian Hofmann-Hicks (evil) */
 
 module.exports =
-  __webpack_require__(57)
+  __webpack_require__(59)
 
 
 /***/ }),
-/* 79 */
+/* 82 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /** @license ISC License (c) copyright 2016 original and current authors */
 /** @author Ian Hofmann-Hicks (evil) */
 
-var isApplicative = __webpack_require__(29)
-var isPlus = __webpack_require__(58)
+var isApplicative = __webpack_require__(33)
+var isPlus = __webpack_require__(60)
 
 // isAlternative : a -> Boolean
 function isAlternative(m) {
@@ -8876,29 +8907,29 @@ module.exports = isAlternative
 
 
 /***/ }),
-/* 80 */
+/* 83 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /** @license ISC License (c) copyright 2017 original and current authors */
 /** @author Ian Hofmann-Hicks (evil) */
 
 module.exports =
-  __webpack_require__(29)
+  __webpack_require__(33)
 
 
 /***/ }),
-/* 81 */
+/* 84 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /** @license ISC License (c) copyright 2017 original and current authors */
 /** @author Ian Hofmann-Hicks (evil) */
 
 module.exports =
-  __webpack_require__(36)
+  __webpack_require__(38)
 
 
 /***/ }),
-/* 82 */
+/* 85 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /** @license ISC License (c) copyright 2017 original and current authors */
@@ -8909,18 +8940,18 @@ module.exports =
 
 
 /***/ }),
-/* 83 */
+/* 86 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /** @license ISC License (c) copyright 2017 original and current authors */
 /** @author Ian Hofmann-Hicks (evil) */
 
 module.exports =
-  __webpack_require__(84)
+  __webpack_require__(87)
 
 
 /***/ }),
-/* 84 */
+/* 87 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /** @license ISC License (c) copyright 2017 original and current authors */
@@ -8939,18 +8970,18 @@ module.exports = isBifunctor
 
 
 /***/ }),
-/* 85 */
+/* 88 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /** @license ISC License (c) copyright 2019 original and current authors */
 /** @author Dale Francis (dalefrancis88) */
 
 module.exports =
-  __webpack_require__(86)
+  __webpack_require__(89)
 
 
 /***/ }),
-/* 86 */
+/* 89 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /** @license ISC License (c) copyright 2019 original and current authors */
@@ -8967,7 +8998,7 @@ module.exports = isBichain
 
 
 /***/ }),
-/* 87 */
+/* 90 */
 /***/ (function(module, exports) {
 
 /** @license ISC License (c) copyright 2017 original and current authors */
@@ -8982,14 +9013,14 @@ module.exports = isBoolean
 
 
 /***/ }),
-/* 88 */
+/* 91 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /** @license ISC License (c) copyright 2017 original and current authors */
 /** @author Ian Hofmann-Hicks (evil) */
 
 var hasAlg = __webpack_require__(5)
-var isSemigroupoid = __webpack_require__(59)
+var isSemigroupoid = __webpack_require__(61)
 
 // isCategory : a -> Boolean
 function isCategory(m) {
@@ -9001,25 +9032,25 @@ module.exports = isCategory
 
 
 /***/ }),
-/* 89 */
+/* 92 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /** @license ISC License (c) copyright 2017 original and current authors */
 /** @author Ian Hofmann-Hicks (evil) */
 
 module.exports =
-  __webpack_require__(90)
+  __webpack_require__(93)
 
 
 /***/ }),
-/* 90 */
+/* 93 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /** @license ISC License (c) copyright 2016 original and current authors */
 /** @author Ian Hofmann-Hicks (evil) */
 
 var hasAlg = __webpack_require__(5)
-var isApply = __webpack_require__(36)
+var isApply = __webpack_require__(38)
 
 // isChain : a -> Boolean
 function isChain(m) {
@@ -9031,39 +9062,6 @@ module.exports = isChain
 
 
 /***/ }),
-/* 91 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/** @license ISC License (c) copyright 2017 original and current authors */
-/** @author Ian Hofmann-Hicks (evil) */
-
-module.exports =
-  __webpack_require__(60)
-
-
-/***/ }),
-/* 92 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/** @license ISC License (c) copyright 2018 original and current authors */
-/** @author Dale Francis (dalefrancis88) */
-
-module.exports =
-  __webpack_require__(53)
-
-
-/***/ }),
-/* 93 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/** @license ISC License (c) copyright 2017 original and current authors */
-/** @author Ian Hofmann-Hicks (evil) */
-
-module.exports =
-  __webpack_require__(22)
-
-
-/***/ }),
 /* 94 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -9071,22 +9069,55 @@ module.exports =
 /** @author Ian Hofmann-Hicks (evil) */
 
 module.exports =
-  __webpack_require__(12)
+  __webpack_require__(62)
 
 
 /***/ }),
 /* 95 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/** @license ISC License (c) copyright 2017 original and current authors */
-/** @author Ian Hofmann-Hicks (evil) */
+/** @license ISC License (c) copyright 2018 original and current authors */
+/** @author Dale Francis (dalefrancis88) */
 
 module.exports =
-  __webpack_require__(96)
+  __webpack_require__(55)
 
 
 /***/ }),
 /* 96 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/** @license ISC License (c) copyright 2017 original and current authors */
+/** @author Ian Hofmann-Hicks (evil) */
+
+module.exports =
+  __webpack_require__(24)
+
+
+/***/ }),
+/* 97 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/** @license ISC License (c) copyright 2017 original and current authors */
+/** @author Ian Hofmann-Hicks (evil) */
+
+module.exports =
+  __webpack_require__(13)
+
+
+/***/ }),
+/* 98 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/** @license ISC License (c) copyright 2017 original and current authors */
+/** @author Ian Hofmann-Hicks (evil) */
+
+module.exports =
+  __webpack_require__(99)
+
+
+/***/ }),
+/* 99 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /** @license ISC License (c) copyright 2016 original and current authors */
@@ -9105,7 +9136,7 @@ module.exports = isExtend
 
 
 /***/ }),
-/* 97 */
+/* 100 */
 /***/ (function(module, exports) {
 
 /** @license ISC License (c) copyright 2019 original and current authors */
@@ -9120,7 +9151,7 @@ module.exports = isFalse
 
 
 /***/ }),
-/* 98 */
+/* 101 */
 /***/ (function(module, exports) {
 
 /** @license ISC License (c) copyright 2019 original and current authors */
@@ -9135,18 +9166,18 @@ module.exports = isFalsy
 
 
 /***/ }),
-/* 99 */
+/* 102 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /** @license ISC License (c) copyright 2017 original and current authors */
 /** @author Ian Hofmann-Hicks (evil) */
 
 module.exports =
-  __webpack_require__(56)
+  __webpack_require__(58)
 
 
 /***/ }),
-/* 100 */
+/* 103 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /** @license ISC License (c) copyright 2017 original and current authors */
@@ -9157,7 +9188,7 @@ module.exports =
 
 
 /***/ }),
-/* 101 */
+/* 104 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /** @license ISC License (c) copyright 2017 original and current authors */
@@ -9168,36 +9199,36 @@ module.exports =
 
 
 /***/ }),
-/* 102 */
+/* 105 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /** @license ISC License (c) copyright 2017 original and current authors */
 /** @author Ian Hofmann-Hicks (evil) */
 
 module.exports =
-  __webpack_require__(16)
+  __webpack_require__(17)
 
 
 /***/ }),
-/* 103 */
+/* 106 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /** @license ISC License (c) copyright 2018 original and current authors */
 /** @author Dale Francis (dalefrancis88) */
 
 module.exports =
-  __webpack_require__(104)
+  __webpack_require__(107)
 
 
 /***/ }),
-/* 104 */
+/* 107 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /** @license ISC License (c) copyright 2018 original and current authors */
 /** @author Dale Francis (dalefrancis88) */
 
 var isFunction = __webpack_require__(7)
-var isNil = __webpack_require__(13)
+var isNil = __webpack_require__(14)
 
 function isIterable(iterable) {
   return !isNil(iterable) && isFunction(iterable[Symbol.iterator])
@@ -9207,18 +9238,18 @@ module.exports = isIterable
 
 
 /***/ }),
-/* 105 */
+/* 108 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /** @license ISC License (c) copyright 2019 original and current authors */
 /** @author Benny Powers (bennypowers) */
 
 module.exports =
-  __webpack_require__(106)
+  __webpack_require__(109)
 
 
 /***/ }),
-/* 106 */
+/* 109 */
 /***/ (function(module, exports) {
 
 /** @license ISC License (c) copyright 2019 original and current authors */
@@ -9232,39 +9263,6 @@ module.exports = isMap
 
 
 /***/ }),
-/* 107 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/** @license ISC License (c) copyright 2017 original and current authors */
-/** @author Ian Hofmann-Hicks (evil) */
-
-module.exports =
-  __webpack_require__(67)
-
-
-/***/ }),
-/* 108 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/** @license ISC License (c) copyright 2017 original and current authors */
-/** @author Ian Hofmann-Hicks (evil) */
-
-module.exports =
-  __webpack_require__(49)
-
-
-/***/ }),
-/* 109 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/** @license ISC License (c) copyright 2017 original and current authors */
-/** @author Ian Hofmann-Hicks (evil) */
-
-module.exports =
-  __webpack_require__(13)
-
-
-/***/ }),
 /* 110 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -9272,7 +9270,7 @@ module.exports =
 /** @author Ian Hofmann-Hicks (evil) */
 
 module.exports =
-  __webpack_require__(55)
+  __webpack_require__(70)
 
 
 /***/ }),
@@ -9283,7 +9281,7 @@ module.exports =
 /** @author Ian Hofmann-Hicks (evil) */
 
 module.exports =
-  __webpack_require__(34)
+  __webpack_require__(51)
 
 
 /***/ }),
@@ -9294,7 +9292,7 @@ module.exports =
 /** @author Ian Hofmann-Hicks (evil) */
 
 module.exports =
-  __webpack_require__(58)
+  __webpack_require__(14)
 
 
 /***/ }),
@@ -9305,7 +9303,7 @@ module.exports =
 /** @author Ian Hofmann-Hicks (evil) */
 
 module.exports =
-  __webpack_require__(114)
+  __webpack_require__(57)
 
 
 /***/ }),
@@ -9315,8 +9313,41 @@ module.exports =
 /** @license ISC License (c) copyright 2017 original and current authors */
 /** @author Ian Hofmann-Hicks (evil) */
 
+module.exports =
+  __webpack_require__(36)
+
+
+/***/ }),
+/* 115 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/** @license ISC License (c) copyright 2017 original and current authors */
+/** @author Ian Hofmann-Hicks (evil) */
+
+module.exports =
+  __webpack_require__(60)
+
+
+/***/ }),
+/* 116 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/** @license ISC License (c) copyright 2017 original and current authors */
+/** @author Ian Hofmann-Hicks (evil) */
+
+module.exports =
+  __webpack_require__(117)
+
+
+/***/ }),
+/* 117 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/** @license ISC License (c) copyright 2017 original and current authors */
+/** @author Ian Hofmann-Hicks (evil) */
+
 var hasAlg = __webpack_require__(5)
-var isContravariant = __webpack_require__(60)
+var isContravariant = __webpack_require__(62)
 var isFunctor = __webpack_require__(19)
 
 // isProfunctor :: a -> Boolean
@@ -9330,18 +9361,18 @@ module.exports = isProfunctor
 
 
 /***/ }),
-/* 115 */
+/* 118 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /** @license ISC License (c) copyright 2017 original and current authors */
 /** @author Ian Hofmann-Hicks (evil) */
 
 module.exports =
-  __webpack_require__(116)
+  __webpack_require__(119)
 
 
 /***/ }),
-/* 116 */
+/* 119 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /** @license ISC License (c) copyright 2017 original and current authors */
@@ -9360,54 +9391,54 @@ module.exports = isPromise
 
 
 /***/ }),
-/* 117 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/** @license ISC License (c) copyright 2017 original and current authors */
-/** @author Ian Hofmann-Hicks (evil) */
-
-var curry = __webpack_require__(8)
-
-var isSame = __webpack_require__(51)
-
-module.exports = curry(isSame)
-
-
-/***/ }),
-/* 118 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/** @license ISC License (c) copyright 2017 original and current authors */
-/** @author Ian Hofmann-Hicks (evil) */
-
-module.exports =
-  __webpack_require__(20)
-
-
-/***/ }),
-/* 119 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/** @license ISC License (c) copyright 2017 original and current authors */
-/** @author Ian Hofmann-Hicks (evil) */
-
-module.exports =
-  __webpack_require__(40)
-
-
-/***/ }),
 /* 120 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /** @license ISC License (c) copyright 2017 original and current authors */
 /** @author Ian Hofmann-Hicks (evil) */
 
-module.exports =
-  __webpack_require__(59)
+var curry = __webpack_require__(9)
+
+var isSame = __webpack_require__(53)
+
+module.exports = curry(isSame)
 
 
 /***/ }),
 /* 121 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/** @license ISC License (c) copyright 2017 original and current authors */
+/** @author Ian Hofmann-Hicks (evil) */
+
+module.exports =
+  __webpack_require__(22)
+
+
+/***/ }),
+/* 122 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/** @license ISC License (c) copyright 2017 original and current authors */
+/** @author Ian Hofmann-Hicks (evil) */
+
+module.exports =
+  __webpack_require__(43)
+
+
+/***/ }),
+/* 123 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/** @license ISC License (c) copyright 2017 original and current authors */
+/** @author Ian Hofmann-Hicks (evil) */
+
+module.exports =
+  __webpack_require__(61)
+
+
+/***/ }),
+/* 124 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /** @license ISC License (c) copyright 2017 original and current authors */
@@ -9426,29 +9457,18 @@ module.exports = isSetoid
 
 
 /***/ }),
-/* 122 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/** @license ISC License (c) copyright 2017 original and current authors */
-/** @author Ian Hofmann-Hicks (evil) */
-
-module.exports =
-  __webpack_require__(10)
-
-
-/***/ }),
-/* 123 */
+/* 125 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /** @license ISC License (c) copyright 2018 original and current authors */
 /** @author Robert Pearce (rpearce) */
 
 module.exports =
-  __webpack_require__(52)
+  __webpack_require__(54)
 
 
 /***/ }),
-/* 124 */
+/* 126 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /** @license ISC License (c) copyright 2017 original and current authors */
@@ -9467,7 +9487,7 @@ module.exports = isTraversable
 
 
 /***/ }),
-/* 125 */
+/* 127 */
 /***/ (function(module, exports) {
 
 /** @license ISC License (c) copyright 2019 original and current authors */
@@ -9482,7 +9502,7 @@ module.exports = isTrue
 
 
 /***/ }),
-/* 126 */
+/* 128 */
 /***/ (function(module, exports) {
 
 /** @license ISC License (c) copyright 2019 original and current authors */
@@ -9497,18 +9517,18 @@ module.exports = isTruthy
 
 
 /***/ }),
-/* 127 */
+/* 129 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /** @license ISC License (c) copyright 2017 original and current authors */
 /** @author Karthik Iyengar (karthikiyengar) */
 
-var curry = __webpack_require__(8)
-var equals = __webpack_require__(35)
-var isDefined = __webpack_require__(22)
-var isEmpty = __webpack_require__(12)
-var isInteger = __webpack_require__(16)
-var isNil = __webpack_require__(13)
+var curry = __webpack_require__(9)
+var equals = __webpack_require__(37)
+var isDefined = __webpack_require__(24)
+var isEmpty = __webpack_require__(13)
+var isInteger = __webpack_require__(17)
+var isNil = __webpack_require__(14)
 var isString = __webpack_require__(10)
 
 // propEq: (String | Integer) -> a -> b -> Boolean
@@ -9532,33 +9552,33 @@ module.exports = curry(propEq)
 
 
 /***/ }),
-/* 128 */
+/* 130 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /** @license ISC License (c) copyright 2017 original and current authors */
 /** @author Karthik Iyengar (karthikiyengar) */
 /** @author Ian Hofmann-Hicks */
 
-var pathEq = __webpack_require__(61)
+var pathEq = __webpack_require__(63)
 
 module.exports =
   pathEq.origFn('propPathEq')
 
 
 /***/ }),
-/* 129 */
+/* 131 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /** @license ISC License (c) copyright 2018 original and current authors */
 /** @author Ian Hofmann-Hicks (evilsoft) */
 
-var curry = __webpack_require__(8)
-var isEmpty = __webpack_require__(12)
-var isInteger = __webpack_require__(16)
-var isNil = __webpack_require__(13)
-var isPredOrFunc = __webpack_require__(42)
+var curry = __webpack_require__(9)
+var isEmpty = __webpack_require__(13)
+var isInteger = __webpack_require__(17)
+var isNil = __webpack_require__(14)
+var isPredOrFunc = __webpack_require__(45)
 var isString = __webpack_require__(10)
-var predOrFunc = __webpack_require__(41)
+var predOrFunc = __webpack_require__(44)
 
 // propSatisfies: (String | Integer) -> (a -> Boolean) -> b -> Boolean
 // propSatisfies: (String | Integer) -> Pred a -> b -> Boolean
@@ -9582,27 +9602,150 @@ module.exports = curry(propSatisfies)
 
 
 /***/ }),
-/* 130 */
+/* 132 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /** @license ISC License (c) copyright 2018 original and current authors */
 /** @author Ian Hofmann-Hicks (evilsoft) */
 
-var pathSatisfies = __webpack_require__(62)
+var pathSatisfies = __webpack_require__(64)
 
 module.exports =
   pathSatisfies.origFn('propPathSatisfies')
 
 
 /***/ }),
-/* 131 */,
-/* 132 */
+/* 133 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+
+// EXTERNAL MODULE: ./node_modules/ramda/es/internal/_curry2.js
+var _curry2 = __webpack_require__(2);
+
+// EXTERNAL MODULE: ./node_modules/ramda/es/internal/_dispatchable.js + 1 modules
+var _dispatchable = __webpack_require__(30);
+
+// CONCATENATED MODULE: ./node_modules/ramda/es/internal/_filter.js
+function _filter(fn, list) {
+  var idx = 0;
+  var len = list.length;
+  var result = [];
+
+  while (idx < len) {
+    if (fn(list[idx])) {
+      result[result.length] = list[idx];
+    }
+
+    idx += 1;
+  }
+
+  return result;
+}
+// CONCATENATED MODULE: ./node_modules/ramda/es/internal/_isObject.js
+function _isObject(x) {
+  return Object.prototype.toString.call(x) === '[object Object]';
+}
+// EXTERNAL MODULE: ./node_modules/ramda/es/internal/_reduce.js + 2 modules
+var _reduce = __webpack_require__(8);
+
+// EXTERNAL MODULE: ./node_modules/ramda/es/internal/_xfBase.js
+var _xfBase = __webpack_require__(16);
+
+// CONCATENATED MODULE: ./node_modules/ramda/es/internal/_xfilter.js
+
+
+
+var _xfilter_XFilter =
+/*#__PURE__*/
+function () {
+  function XFilter(f, xf) {
+    this.xf = xf;
+    this.f = f;
+  }
+
+  XFilter.prototype['@@transducer/init'] = _xfBase["a" /* default */].init;
+  XFilter.prototype['@@transducer/result'] = _xfBase["a" /* default */].result;
+
+  XFilter.prototype['@@transducer/step'] = function (result, input) {
+    return this.f(input) ? this.xf['@@transducer/step'](result, input) : result;
+  };
+
+  return XFilter;
+}();
+
+var _xfilter =
+/*#__PURE__*/
+Object(_curry2["a" /* default */])(function _xfilter(f, xf) {
+  return new _xfilter_XFilter(f, xf);
+});
+
+/* harmony default export */ var internal_xfilter = (_xfilter);
+// EXTERNAL MODULE: ./node_modules/ramda/es/keys.js + 1 modules
+var keys = __webpack_require__(21);
+
+// CONCATENATED MODULE: ./node_modules/ramda/es/filter.js
+
+
+
+
+
+
+
+/**
+ * Takes a predicate and a `Filterable`, and returns a new filterable of the
+ * same type containing the members of the given filterable which satisfy the
+ * given predicate. Filterable objects include plain objects or any object
+ * that has a filter method such as `Array`.
+ *
+ * Dispatches to the `filter` method of the second argument, if present.
+ *
+ * Acts as a transducer if a transformer is given in list position.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.1.0
+ * @category List
+ * @sig Filterable f => (a -> Boolean) -> f a -> f a
+ * @param {Function} pred
+ * @param {Array} filterable
+ * @return {Array} Filterable
+ * @see R.reject, R.transduce, R.addIndex
+ * @example
+ *
+ *      const isEven = n => n % 2 === 0;
+ *
+ *      R.filter(isEven, [1, 2, 3, 4]); //=> [2, 4]
+ *
+ *      R.filter(isEven, {a: 1, b: 2, c: 3, d: 4}); //=> {b: 2, d: 4}
+ */
+
+var filter =
+/*#__PURE__*/
+Object(_curry2["a" /* default */])(
+/*#__PURE__*/
+Object(_dispatchable["a" /* default */])(['filter'], internal_xfilter, function (pred, filterable) {
+  return _isObject(filterable) ? Object(_reduce["a" /* default */])(function (acc, key) {
+    if (pred(filterable[key])) {
+      acc[key] = filterable[key];
+    }
+
+    return acc;
+  }, {}, Object(keys["a" /* default */])(filterable)) : // else
+  _filter(pred, filterable);
+}));
+
+/* harmony default export */ var es_filter = __webpack_exports__["a"] = (filter);
+
+/***/ }),
+/* 134 */,
+/* 135 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /** @license ISC License (c) copyright 2016 original and current authors */
 /** @author Ian Hofmann-Hicks (evil) */
 
-var curry = __webpack_require__(8)
+var curry = __webpack_require__(9)
 var isFunction = __webpack_require__(7)
 
 function option(x, m) {
@@ -9617,7 +9760,7 @@ module.exports = curry(option)
 
 
 /***/ }),
-/* 133 */
+/* 136 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /** @license ISC License (c) copyright 2017 original and current authors */
@@ -9625,16 +9768,16 @@ module.exports = curry(option)
 
 var VERSION = 1
 
-var _implements = __webpack_require__(46)
-var _inspect = __webpack_require__(47)
-var _type = __webpack_require__(21).type('Reader')()
-var _typeString = __webpack_require__(21).typeFn(_type, VERSION)
-var fl = __webpack_require__(28)
+var _implements = __webpack_require__(48)
+var _inspect = __webpack_require__(49)
+var _type = __webpack_require__(23).type('Reader')()
+var _typeString = __webpack_require__(23).typeFn(_type, VERSION)
+var fl = __webpack_require__(32)
 
-var curry = __webpack_require__(8)
+var curry = __webpack_require__(9)
 var isFunction = __webpack_require__(7)
-var isMonad = __webpack_require__(67)
-var isSameType = __webpack_require__(20)
+var isMonad = __webpack_require__(70)
+var isSameType = __webpack_require__(22)
 
 function _ReaderT(Monad) {
   if(!isMonad(Monad)) {
@@ -9765,49 +9908,12 @@ module.exports = _ReaderT
 
 
 /***/ }),
-/* 134 */
+/* 137 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var _internal_curry1_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
-
-/**
- * Returns a function that always returns the given value. Note that for
- * non-primitives the value returned is a reference to the original value.
- *
- * This function is known as `const`, `constant`, or `K` (for K combinator) in
- * other languages and libraries.
- *
- * @func
- * @memberOf R
- * @since v0.1.0
- * @category Function
- * @sig a -> (* -> a)
- * @param {*} val The value to wrap in a function
- * @return {Function} A Function :: * -> val.
- * @example
- *
- *      const t = R.always('Tee');
- *      t(); //=> 'Tee'
- */
-
-var always =
-/*#__PURE__*/
-Object(_internal_curry1_js__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])(function always(val) {
-  return function () {
-    return val;
-  };
-});
-
-/* harmony default export */ __webpack_exports__["a"] = (always);
-
-/***/ }),
-/* 135 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var _internal_curry1_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
-/* harmony import */ var _curryN_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(15);
+/* harmony import */ var _curryN_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(12);
 
 
 /**
@@ -9861,148 +9967,141 @@ Object(_internal_curry1_js__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])(func
 /* harmony default export */ __webpack_exports__["a"] = (curry);
 
 /***/ }),
-/* 136 */,
-/* 137 */
+/* 138 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var _internal_curry1_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
+
+/**
+ * Returns a function that always returns the given value. Note that for
+ * non-primitives the value returned is a reference to the original value.
+ *
+ * This function is known as `const`, `constant`, or `K` (for K combinator) in
+ * other languages and libraries.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.1.0
+ * @category Function
+ * @sig a -> (* -> a)
+ * @param {*} val The value to wrap in a function
+ * @return {Function} A Function :: * -> val.
+ * @example
+ *
+ *      const t = R.always('Tee');
+ *      t(); //=> 'Tee'
+ */
+
+var always =
+/*#__PURE__*/
+Object(_internal_curry1_js__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])(function always(val) {
+  return function () {
+    return val;
+  };
+});
+
+/* harmony default export */ __webpack_exports__["a"] = (always);
+
+/***/ }),
+/* 139 */,
+/* 140 */,
+/* 141 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 // ESM COMPAT FLAG
 __webpack_require__.r(__webpack_exports__);
 
-// EXPORTS
-__webpack_require__.d(__webpack_exports__, "steps", function() { return /* binding */ steps; });
-
 // EXTERNAL MODULE: ./chrome/src/chromeRuntime.js
-var chromeRuntime = __webpack_require__(45);
+var chromeRuntime = __webpack_require__(47);
 
 // EXTERNAL MODULE: ./node_modules/ramda/es/pipe.js + 5 modules
-var pipe = __webpack_require__(65);
+var pipe = __webpack_require__(68);
 
 // EXTERNAL MODULE: ./node_modules/ramda/es/chain.js + 4 modules
-var chain = __webpack_require__(66);
+var chain = __webpack_require__(69);
 
-// EXTERNAL MODULE: ./node_modules/ramda/es/map.js + 2 modules
+// EXTERNAL MODULE: ./node_modules/ramda/es/map.js + 1 modules
 var map = __webpack_require__(11);
 
-// EXTERNAL MODULE: ./node_modules/ramda/es/internal/_curry2.js
-var _curry2 = __webpack_require__(3);
+// EXTERNAL MODULE: ./node_modules/ramda/es/filter.js + 3 modules
+var filter = __webpack_require__(133);
 
-// EXTERNAL MODULE: ./node_modules/ramda/es/internal/_dispatchable.js + 1 modules
-var _dispatchable = __webpack_require__(32);
+// EXTERNAL MODULE: ./node_modules/ramda/es/pipeK.js + 3 modules
+var pipeK = __webpack_require__(142);
 
-// CONCATENATED MODULE: ./node_modules/ramda/es/internal/_filter.js
-function _filter(fn, list) {
-  var idx = 0;
-  var len = list.length;
-  var result = [];
+// EXTERNAL MODULE: ./node_modules/ramda/es/internal/_has.js
+var _has = __webpack_require__(20);
 
-  while (idx < len) {
-    if (fn(list[idx])) {
-      result[result.length] = list[idx];
+// CONCATENATED MODULE: ./node_modules/ramda/es/internal/_objectAssign.js
+ // Based on https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Object/assign
+
+function _objectAssign(target) {
+  if (target == null) {
+    throw new TypeError('Cannot convert undefined or null to object');
+  }
+
+  var output = Object(target);
+  var idx = 1;
+  var length = arguments.length;
+
+  while (idx < length) {
+    var source = arguments[idx];
+
+    if (source != null) {
+      for (var nextKey in source) {
+        if (Object(_has["a" /* default */])(nextKey, source)) {
+          output[nextKey] = source[nextKey];
+        }
+      }
     }
 
     idx += 1;
   }
 
-  return result;
+  return output;
 }
-// CONCATENATED MODULE: ./node_modules/ramda/es/internal/_isObject.js
-function _isObject(x) {
-  return Object.prototype.toString.call(x) === '[object Object]';
-}
-// EXTERNAL MODULE: ./node_modules/ramda/es/internal/_reduce.js + 2 modules
-var _reduce = __webpack_require__(9);
 
-// EXTERNAL MODULE: ./node_modules/ramda/es/internal/_xfBase.js
-var _xfBase = __webpack_require__(17);
+/* harmony default export */ var internal_objectAssign = (typeof Object.assign === 'function' ? Object.assign : _objectAssign);
+// EXTERNAL MODULE: ./node_modules/ramda/es/internal/_curry2.js
+var _curry2 = __webpack_require__(2);
 
-// CONCATENATED MODULE: ./node_modules/ramda/es/internal/_xfilter.js
-
-
-
-var _xfilter_XFilter =
-/*#__PURE__*/
-function () {
-  function XFilter(f, xf) {
-    this.xf = xf;
-    this.f = f;
-  }
-
-  XFilter.prototype['@@transducer/init'] = _xfBase["a" /* default */].init;
-  XFilter.prototype['@@transducer/result'] = _xfBase["a" /* default */].result;
-
-  XFilter.prototype['@@transducer/step'] = function (result, input) {
-    return this.f(input) ? this.xf['@@transducer/step'](result, input) : result;
-  };
-
-  return XFilter;
-}();
-
-var _xfilter =
-/*#__PURE__*/
-Object(_curry2["a" /* default */])(function _xfilter(f, xf) {
-  return new _xfilter_XFilter(f, xf);
-});
-
-/* harmony default export */ var internal_xfilter = (_xfilter);
-// EXTERNAL MODULE: ./node_modules/ramda/es/keys.js + 2 modules
-var keys = __webpack_require__(44);
-
-// CONCATENATED MODULE: ./node_modules/ramda/es/filter.js
-
-
-
-
-
+// CONCATENATED MODULE: ./node_modules/ramda/es/merge.js
 
 
 /**
- * Takes a predicate and a `Filterable`, and returns a new filterable of the
- * same type containing the members of the given filterable which satisfy the
- * given predicate. Filterable objects include plain objects or any object
- * that has a filter method such as `Array`.
- *
- * Dispatches to the `filter` method of the second argument, if present.
- *
- * Acts as a transducer if a transformer is given in list position.
+ * Create a new object with the own properties of the first object merged with
+ * the own properties of the second object. If a key exists in both objects,
+ * the value from the second object will be used.
  *
  * @func
  * @memberOf R
  * @since v0.1.0
- * @category List
- * @sig Filterable f => (a -> Boolean) -> f a -> f a
- * @param {Function} pred
- * @param {Array} filterable
- * @return {Array} Filterable
- * @see R.reject, R.transduce, R.addIndex
+ * @category Object
+ * @sig {k: v} -> {k: v} -> {k: v}
+ * @param {Object} l
+ * @param {Object} r
+ * @return {Object}
+ * @see R.mergeRight, R.mergeDeepRight, R.mergeWith, R.mergeWithKey
+ * @deprecated since v0.26.0
  * @example
  *
- *      const isEven = n => n % 2 === 0;
+ *      R.merge({ 'name': 'fred', 'age': 10 }, { 'age': 40 });
+ *      //=> { 'name': 'fred', 'age': 40 }
  *
- *      R.filter(isEven, [1, 2, 3, 4]); //=> [2, 4]
- *
- *      R.filter(isEven, {a: 1, b: 2, c: 3, d: 4}); //=> {b: 2, d: 4}
+ *      const withDefaults = R.merge({x: 0, y: 0});
+ *      withDefaults({y: 2}); //=> {x: 0, y: 2}
+ * @symb R.merge(a, b) = {...a, ...b}
  */
 
-var filter =
+var merge_merge =
 /*#__PURE__*/
-Object(_curry2["a" /* default */])(
-/*#__PURE__*/
-Object(_dispatchable["a" /* default */])(['filter'], internal_xfilter, function (pred, filterable) {
-  return _isObject(filterable) ? Object(_reduce["a" /* default */])(function (acc, key) {
-    if (pred(filterable[key])) {
-      acc[key] = filterable[key];
-    }
+Object(_curry2["a" /* default */])(function merge(l, r) {
+  return internal_objectAssign({}, l, r);
+});
 
-    return acc;
-  }, {}, Object(keys["a" /* default */])(filterable)) : // else
-  _filter(pred, filterable);
-}));
-
-/* harmony default export */ var es_filter = (filter);
-// EXTERNAL MODULE: ./node_modules/ramda/es/pipeK.js + 3 modules
-var pipeK = __webpack_require__(139);
-
+/* harmony default export */ var es_merge = (merge_merge);
 // EXTERNAL MODULE: ./node_modules/crocks/IO/index.js
 var IO = __webpack_require__(6);
 var IO_default = /*#__PURE__*/__webpack_require__.n(IO);
@@ -10037,21 +10136,21 @@ const getUser = Object(pipe["a" /* default */])(
 );
 
 // EXTERNAL MODULE: ./chrome/src/naturalTransformations.js
-var naturalTransformations = __webpack_require__(33);
+var naturalTransformations = __webpack_require__(35);
 
 // EXTERNAL MODULE: ./node_modules/crocks/pointfree/option.js
-var pointfree_option = __webpack_require__(132);
+var pointfree_option = __webpack_require__(135);
 var option_default = /*#__PURE__*/__webpack_require__.n(pointfree_option);
 
 // EXTERNAL MODULE: ./node_modules/most/src/index.js + 65 modules
-var src = __webpack_require__(26);
+var src = __webpack_require__(29);
 
 // EXTERNAL MODULE: ./node_modules/crocks/Reader/ReaderT.js
-var ReaderT = __webpack_require__(133);
+var ReaderT = __webpack_require__(136);
 var ReaderT_default = /*#__PURE__*/__webpack_require__.n(ReaderT);
 
 // EXTERNAL MODULE: ./node_modules/ramda/es/curry.js
-var curry = __webpack_require__(135);
+var curry = __webpack_require__(137);
 
 // CONCATENATED MODULE: ./chrome/src/speechSynthesis.js
 
@@ -10114,17 +10213,11 @@ const notifySolveCaptcha = Object(curry["a" /* default */])((ms, btn) => {
 	return IO_default.a.of(setInterval(() => action.run(), ms));
 });
 
-// selectCity :: () -> IO ()
-const selectCity = Object(pipeK["a" /* default */])(
-	() => Object(helpers["k" /* selectIndex */])(SELECTORS.OPT_CITY, 33), // 33 is Madrid City
-	_clickAcceptButton
-);
+// selectCity :: Number -> IO ()
+const selectCity = Object(pipeK["a" /* default */])(Object(helpers["k" /* selectIndex */])(SELECTORS.OPT_CITY), _clickAcceptButton);
 
-// selectProcessType :: () -> IO ()
-const selectProcessType = Object(pipeK["a" /* default */])(
-	() => Object(helpers["k" /* selectIndex */])(SELECTORS.OPT_PROCESS_TYPE, 19), // select Huella y renovación
-	_clickAcceptButton
-);
+// selectProcessType :: Number -> IO ()
+const selectProcessType = Object(pipeK["a" /* default */])(Object(helpers["k" /* selectIndex */])(SELECTORS.OPT_PROCESS_TYPE), _clickAcceptButton);
 
 // enterToProcedure :: () -> IO ()
 const enterToProcedure = () => Object(helpers["b" /* click */])(SELECTORS.BTN_ENTER);
@@ -10153,17 +10246,15 @@ const setPersonalInformation = (user) =>
 // askForAppointment :: () -> IO ()
 const askForAppointment = () => Object(helpers["b" /* click */])(SELECTORS.BTN_SEND);
 
-// selectOffice :: () -> IO ()
-const selectOffice = Object(pipeK["a" /* default */])(
-	() => Object(helpers["k" /* selectIndex */])(SELECTORS.OPT_OFFICE, 0), // selecciona oficina
-	_clickNextButton
-);
+// selectOffice :: Number -> IO ()
+const selectOffice = Object(pipeK["a" /* default */])(Object(helpers["k" /* selectIndex */])(SELECTORS.OPT_OFFICE), _clickNextButton);
 
+// setContactInformation :: User -> IO ()
 const setContactInformation = (user) =>
 	helpers["a" /* Monad */].do(function*() {
 		const telInput = yield Object(helpers["i" /* querySelector */])(SELECTORS.INP_TEL);
 		const emailInput = yield Object(helpers["i" /* querySelector */])(SELECTORS.INP_EMAIL);
-		const repeatEmailInput = yield Object(helpers["i" /* querySelector */])(INP_REPEAT_EMAIL);
+		const repeatEmailInput = yield Object(helpers["i" /* querySelector */])(SELECTORS.INP_REPEAT_EMAIL);
 
 		yield Object(helpers["m" /* setValue */])(user.tel, telInput);
 		yield Object(helpers["m" /* setValue */])(user.email, emailInput);
@@ -10195,17 +10286,23 @@ const verifyAppointment = () =>
 
 
 
+
+
 const ReaderIO = ReaderT_default()(IO_default.a);
 
-
+const userCodes = {
+	MADRID_CITY: 33,
+	PROCESS_RENOVATION_AND_FINGERPRINT: 19,
+	FIRST_OFFICE_AVAILABLE: 0
+};
 
 const steps = {
-	1: ReaderIO.liftFn(selectCity),
-	2: ReaderIO.liftFn(selectProcessType),
+	1: () => ReaderIO((user) => selectCity(user.MADRID_CITY)),
+	2: () => ReaderIO((user) => selectProcessType(user.PROCESS_RENOVATION_AND_FINGERPRINT)),
 	3: ReaderIO.liftFn(enterToProcedure),
 	4: () => ReaderIO((user) => setPersonalInformation(user)),
 	5: ReaderIO.liftFn(askForAppointment),
-	6: ReaderIO.liftFn(selectOffice),
+	6: () => ReaderIO((user) => selectOffice(user.FIRST_OFFICE_AVAILABLE)),
 	7: () => ReaderIO((user) => setContactInformation(user)),
 	8: ReaderIO.liftFn(verifyAppointment)
 };
@@ -10218,10 +10315,11 @@ const sendStoredUserToPopup = Object(pipe["a" /* default */])(
 	() => Object(src["c" /* periodic */])(500),
 	Object(chain["a" /* default */])(Object(naturalTransformations["a" /* ioToStream */])(getUser)),
 	Object(map["a" /* default */])(option_default()(null)),
-	es_filter(helpers["e" /* isNotNil */]),
+	Object(filter["a" /* default */])(helpers["e" /* isNotNil */]),
 	Object(chain["a" /* default */])(chromeRuntime["c" /* sendChromeMessageToPopup */])
 );
 
+// fillPageFormSteps :: () -> Reader (IO ())
 const fillPageFormSteps = Object(pipeK["a" /* default */])(
 	ReaderIO.liftFn(() => Object(helpers["f" /* locationIncludes */])('index.html')),
 	ReaderIO.liftFn((isIndexPage) => (isIndexPage ? IO_default.a.of(1) : getNextStep())),
@@ -10232,6 +10330,7 @@ const fillPageFormSteps = Object(pipeK["a" /* default */])(
 const fillPageFormStepsWithUserData = Object(pipe["a" /* default */])(
 	getUser, //
 	Object(map["a" /* default */])(option_default()({})), //
+	Object(map["a" /* default */])(es_merge(userCodes)),
 	Object(chain["a" /* default */])((user) => fillPageFormSteps().runWith(user)) //
 );
 
@@ -10243,8 +10342,7 @@ window.onload = function() {
 
 
 /***/ }),
-/* 138 */,
-/* 139 */
+/* 142 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -10253,16 +10351,16 @@ window.onload = function() {
 __webpack_require__.d(__webpack_exports__, "a", function() { return /* binding */ pipeK; });
 
 // EXTERNAL MODULE: ./node_modules/ramda/es/chain.js + 4 modules
-var chain = __webpack_require__(66);
+var chain = __webpack_require__(69);
 
 // EXTERNAL MODULE: ./node_modules/ramda/es/pipe.js + 5 modules
-var pipe = __webpack_require__(65);
+var pipe = __webpack_require__(68);
 
 // EXTERNAL MODULE: ./node_modules/ramda/es/internal/_curry1.js
 var _curry1 = __webpack_require__(1);
 
 // EXTERNAL MODULE: ./node_modules/ramda/es/internal/_isString.js
-var _isString = __webpack_require__(39);
+var _isString = __webpack_require__(41);
 
 // CONCATENATED MODULE: ./node_modules/ramda/es/reverse.js
 
@@ -10334,7 +10432,7 @@ function compose() {
 
   return pipe["a" /* default */].apply(this, es_reverse(arguments));
 }
-// EXTERNAL MODULE: ./node_modules/ramda/es/map.js + 2 modules
+// EXTERNAL MODULE: ./node_modules/ramda/es/map.js + 1 modules
 var map = __webpack_require__(11);
 
 // CONCATENATED MODULE: ./node_modules/ramda/es/composeK.js

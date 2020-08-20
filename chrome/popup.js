@@ -2,7 +2,8 @@ import { clickStreamFromId, getElementById, mapIndexed } from './src/helpers';
 import { sendChromeMessageToActiveTab, getChromeMessages } from './src/chromeRuntime';
 import { ioToStream } from './src/naturalTransformations';
 import { Map } from 'immutable-ext';
-import { pipe, chain, map, always, sequence, partial, curry } from 'ramda';
+import { pipe, chain, map, always, sequence, partial, curry, when, toUpper, trim, toLower, evolve } from 'ramda';
+import isString from 'crocks/predicates/isString';
 import IO from 'crocks/IO';
 import { take } from 'most/src/';
 
@@ -33,7 +34,9 @@ const getUserDataFromForm = pipe(
 	map(getElementById),
 	map(map(getValueFromInput)),
 	sequence(IO.of),
-	map((x) => x.toJS())
+	map((x) => x.toJS()),
+	map(map(when(isString, pipe(trim, toUpper)))),
+	map(evolve({ email: toLower }))
 );
 
 // setUserDataToForm :: { name: id } -> { name: value } -> IO { name: HTMLElement }

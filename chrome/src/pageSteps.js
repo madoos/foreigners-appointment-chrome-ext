@@ -48,17 +48,11 @@ const notifySolveCaptcha = curry((ms, btn) => {
 	return IO.of(setInterval(() => action.run(), ms));
 });
 
-// selectCity :: () -> IO ()
-export const selectCity = pipeK(
-	() => selectIndex(SELECTORS.OPT_CITY, 33), // 33 is Madrid City
-	_clickAcceptButton
-);
+// selectCity :: Number -> IO ()
+export const selectCity = pipeK(selectIndex(SELECTORS.OPT_CITY), _clickAcceptButton);
 
-// selectProcessType :: () -> IO ()
-export const selectProcessType = pipeK(
-	() => selectIndex(SELECTORS.OPT_PROCESS_TYPE, 19), // select Huella y renovación
-	_clickAcceptButton
-);
+// selectProcessType :: Number -> IO ()
+export const selectProcessType = pipeK(selectIndex(SELECTORS.OPT_PROCESS_TYPE), _clickAcceptButton);
 
 // enterToProcedure :: () -> IO ()
 export const enterToProcedure = () => click(SELECTORS.BTN_ENTER);
@@ -87,17 +81,15 @@ export const setPersonalInformation = (user) =>
 // askForAppointment :: () -> IO ()
 export const askForAppointment = () => click(SELECTORS.BTN_SEND);
 
-// selectOffice :: () -> IO ()
-export const selectOffice = pipeK(
-	() => selectIndex(SELECTORS.OPT_OFFICE, 0), // selecciona oficina
-	_clickNextButton
-);
+// selectOffice :: Number -> IO ()
+export const selectOffice = pipeK(selectIndex(SELECTORS.OPT_OFFICE), _clickNextButton);
 
+// setContactInformation :: User -> IO ()
 export const setContactInformation = (user) =>
 	Monad.do(function*() {
 		const telInput = yield querySelector(SELECTORS.INP_TEL);
 		const emailInput = yield querySelector(SELECTORS.INP_EMAIL);
-		const repeatEmailInput = yield querySelector(INP_REPEAT_EMAIL);
+		const repeatEmailInput = yield querySelector(SELECTORS.INP_REPEAT_EMAIL);
 
 		yield setValue(user.tel, telInput);
 		yield setValue(user.email, emailInput);

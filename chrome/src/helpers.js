@@ -30,7 +30,9 @@ export const clickStreamFromId = pipeK(ioToStream(getElementById), streamFromEve
 export const mapIndexed = addIndex(map);
 
 // selectIndex :: (String, Number) -> IO ()
-export const selectIndex = (selector, index) => IO(() => (document.querySelector(selector).selectedIndex = index));
+export const selectIndex = curry((selector, index) =>
+	IO(() => (document.querySelector(selector).selectedIndex = index))
+);
 
 // click :: ( String | HTMLElement )-> IO ()
 export const click = (selector) =>

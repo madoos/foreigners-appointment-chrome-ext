@@ -1,14 +1,12 @@
 import { getChromeMessages, sendChromeMessageToPopup } from './src/chromeRuntime';
-import { pipe, chain, map, filter, pipeK } from 'ramda';
+import { pipe, chain, map, filter, pipeK, merge } from 'ramda';
 import { saveUser, getUser, getNextStep, setNextStep } from './src/storage';
 import { ioToStream } from './src/naturalTransformations';
 import option from 'crocks/pointfree/option';
-import { isNotNil, locationIncludes, tapF, exec } from './src/helpers';
+import { isNotNil, locationIncludes, tapF } from './src/helpers';
 import { periodic } from 'most';
 import IO from 'crocks/IO';
 import ReaderT from 'crocks/Reader/ReaderT';
-
-const ReaderIO = ReaderT(IO);
 
 import {
 	selectCity,
@@ -21,13 +19,21 @@ import {
 	verifyAppointment
 } from './src/pageSteps';
 
-export const steps = {
-	1: ReaderIO.liftFn(selectCity),
-	2: ReaderIO.liftFn(selectProcessType),
+const ReaderIO = ReaderT(IO);
+
+const userCodes = {
+	MADRID_CITY: 33,
+	PROCESS_RENOVATION_AND_FINGERPRINT: 19,
+	FIRST_OFFICE_AVAILABLE: 0
+};
+
+const steps = {
+	1: () => ReaderIO((user) => selectCity(user.MADRID_CITY)),
+	2: () => ReaderIO((user) => selectProcessType(user.PROCESS_RENOVATION_AND_FINGERPRINT)),
 	3: ReaderIO.liftFn(enterToProcedure),
 	4: () => ReaderIO((user) => setPersonalInformation(user)),
 	5: ReaderIO.liftFn(askForAppointment),
-	6: ReaderIO.liftFn(selectOffice),
+	6: () => ReaderIO((user) => selectOffice(user.FIRST_OFFICE_AVAILABLE)),
 	7: () => ReaderIO((user) => setContactInformation(user)),
 	8: ReaderIO.liftFn(verifyAppointment)
 };
@@ -44,6 +50,7 @@ const sendStoredUserToPopup = pipe(
 	chain(sendChromeMessageToPopup)
 );
 
+// fillPageFormSteps :: () -> Reader (IO ())
 const fillPageFormSteps = pipeK(
 	ReaderIO.liftFn(() => locationIncludes('index.html')),
 	ReaderIO.liftFn((isIndexPage) => (isIndexPage ? IO.of(1) : getNextStep())),
@@ -54,6 +61,7 @@ const fillPageFormSteps = pipeK(
 const fillPageFormStepsWithUserData = pipe(
 	getUser, //
 	map(option({})), //
+	map(merge(userCodes)),
 	chain((user) => fillPageFormSteps().runWith(user)) //
 );
 
