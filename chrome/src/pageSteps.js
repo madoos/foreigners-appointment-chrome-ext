@@ -1,76 +1,93 @@
-export const selectCity = () => {
-	document.querySelector('#form').selectedIndex = 33; // select madrid
-	document.querySelector('#btnAceptar').click(); // click aceptar
-};
+import { click, selectIndex, Monad, querySelector, setProperty, setValue } from './helpers';
+import { pipeK, curry } from 'ramda';
+import IO from 'crocks/IO';
+import { speak } from './speechSynthesis';
 
-export const selectProcessType = () => {
-	document.querySelector('#tramiteGrupo\\[0\\]').selectedIndex = 19; // select procedure
-	document.querySelector('#btnAceptar').click(); // click acept
-};
+// _clickAcceptButton :: () -> IO ()
+const _clickAcceptButton = () => click('#btnAceptar');
 
-export const enterToProcedure = () => {
-	document.querySelector('#btnEntrar').click(); // enter
-};
+// _clickNextButton :: () -> IO ()
+const _clickNextButton = () => click('#btnSiguiente');
 
-export const setPersonalInformation = () => {
-	document.querySelector('#txtIdCitado').value = user.NIE; // set NIE
-	document.querySelector('#txtDesCitado').value = user.name; // set name
-	document.querySelector('#txtPaisNac').selectedIndex = user.countryCode; // select country
-	document.querySelector('#txtFecha').value = user.cardExpiration;
-	const sendBtn = document.querySelector('#btnEnviar');
+// getIndexByValue :: (HTMLElement, value) -> String
+const getIndexByValue = (options, value) => Array.from(options).find((x) => x.text === value).index;
 
-	try {
-		document.querySelector('#recaptcha-anchor > div.recaptcha-checkbox-border'); // click captcha
-	} catch (e) {}
+// notifySolveCaptcha :: Number -> HTMLElement -> IO ()
+const notifySolveCaptcha = curry((ms, btn) => {
+	const action = Monad.do(function*() {
+		const value = btn.disabled ? speak('Resolver captcha') : click(btn);
+		return IO.of(yield value);
+	});
 
-	const id = setInterval(() => {
-		if (sendBtn.disabled) {
-			speak('Resolver captcha');
-		} else {
-			clearInterval(id);
-			sendBtn.click();
-			// setNextStep(5);
-		}
-	}, 200);
-};
+	return IO.of(setInterval(() => action.run(), ms));
+});
 
-export const askForAppointment = () => {
-	document.querySelector('#btnEnviar').click(); // solicitar cita
-	// setNextStep(6);
-};
+// selectCity :: () -> IO ()
+export const selectCity = pipeK(
+	() => selectIndex('#form', 33), // 33 is Madrid City
+	_clickAcceptButton
+);
 
-export const selectOffice = () => {
-	document.querySelector('#idSede').selectedIndex = 0; // selecciona oficina
-	document.querySelector('#btnSiguiente').click(); // next
-	// setNextStep(7);
-};
+// selectProcessType :: () -> IO ()
+export const selectProcessType = pipeK(
+	() => selectIndex('#tramiteGrupo\\[0\\]', 19), // select Huella y renovación
+	_clickAcceptButton
+);
 
-export const setContactInformation = () => {
-	// set info
-	document.querySelector('#txtTelefonoCitado').value = user.tel;
-	document.querySelector('#emailUNO').value = user.email;
-	document.querySelector('#emailDOS').value = user.email;
-	document.querySelector('#btnSiguiente').click();
-};
+// enterToProcedure :: () -> IO ()
+export const enterToProcedure = () => click('#btnEntrar');
 
-export const verifyAppointment = () => {
-	const msg = document.querySelector('#mensajeInfo > p.mf-msg__info > span > b').textContent;
-	//speak(msg);
+// setPersonalInformation :: User -> Stream ()
+export const setPersonalInformation = (user) =>
+	Monad.do(function*() {
+		const sendBtn = yield querySelector('#btnEnviar');
+		const countryNationalityInput = yield querySelector('#txtPaisNac');
+		const documentNumberInput = yield querySelector('#txtIdCitado');
+		const nameInput = yield querySelector('#txtDesCitado');
+		const cardExpirationInput = yield querySelector('#txtFecha');
+		const countryIndex = getIndexByValue(countryNationalityInput, user.country);
 
-	if (msg === 'NO HAY SUFICIENTES CITAS DISPONIBLES') {
-		document.querySelector('#btnSubmit').click();
-	} else {
-		speak('Parece que tienes cita disponible');
-	}
-};
+		if (user.isPassport) yield click('#rdbTipoDocPas');
 
-export const steps = {
-	1: selectCity,
-	2: selectProcessType,
-	3: enterToProcedure,
-	4: setPersonalInformation,
-	5: askForAppointment,
-	6: selectOffice,
-	7: setContactInformation,
-	8: verifyAppointment
-};
+		yield setValue(user.docNumber, documentNumberInput);
+		yield setValue(user.name, nameInput);
+		yield setValue(user.cardExpiration, cardExpirationInput);
+		yield setProperty('selectedIndex', countryIndex, countryNationalityInput);
+		yield notifySolveCaptcha(250, sendBtn);
+
+		return IO.of();
+	});
+
+// askForAppointment :: () -> IO ()
+export const askForAppointment = () => click('#btnEnviar');
+
+export const selectOffice = pipeK(
+	() => selectIndex('#idSede', 0), // selecciona oficina
+	_clickNextButton
+);
+
+export const setContactInformation = (user) =>
+	Monad.do(function*() {
+		debugger;
+		const telInput = yield querySelector('#txtTelefonoCitado');
+		const emailInput = yield querySelector('#emailUNO');
+		const repeatEmailInput = yield querySelector('#emailDOS');
+
+		yield setValue(user.tel, telInput);
+		yield setValue(user.email, emailInput);
+		yield setValue(user.email, repeatEmailInput);
+		yield _clickNextButton();
+
+		return IO.of();
+	});
+
+// verifyAppointment :: () -> IO ()
+export const verifyAppointment = () =>
+	Monad.do(function*() {
+		const NO_APPOINTMENT = 'NO HAY SUFICIENTES CITAS DISPONIBLES';
+		const messageArea = yield querySelector('#mensajeInfo > p.mf-msg__info > span > b');
+		const submitBtn = yield querySelector('#btnSubmit');
+		const msg = messageArea.textContent;
+		const action = msg === NO_APPOINTMENT ? click(submitBtn) : speak('Si tienes citas disponibles');
+		return IO.of(yield action);
+	});

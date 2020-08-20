@@ -1,6 +1,5 @@
 import { create } from '@most/create';
 import { isFunction } from 'crocks/predicates';
-import { tryCatch } from 'ramda';
 
 export const overloadForFunctions = (nt) => (x) => (isFunction(x) ? (...args) => nt(x(...args)) : nt(x));
 
