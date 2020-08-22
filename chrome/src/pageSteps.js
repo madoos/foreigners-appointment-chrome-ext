@@ -1,7 +1,7 @@
 import { click, selectIndex, Monad, querySelector, setProperty, setValue } from './helpers';
-import { pipeK, curry } from 'ramda';
+import { pipeK, curry, always, chain, pipe } from 'ramda';
 import IO from 'crocks/IO';
-import { speak } from './speechSynthesis';
+import { sayRepeatedly, say } from './speech';
 
 const SELECTORS = {
 	BTN_ACCEPT: '#btnAceptar',
@@ -9,6 +9,7 @@ const SELECTORS = {
 	BTN_ENTER: '#btnEntrar',
 	BTN_SEND: '#btnEnviar',
 	BTN_SUBMIT: '#btnSubmit',
+	BTN_EXIT: '#btnSalir',
 	OPT_CITY: '#form',
 	OPT_PROCESS_TYPE: '#tramiteGrupo\\[0\\]',
 	OPT_OFFICE: '#idSede',
@@ -23,10 +24,13 @@ const SELECTORS = {
 	TEXT_NO_APPOINTMENT: '#mensajeInfo > p.mf-msg__info > span > b'
 };
 
+const AUDIO_MESSAGES = {
+	SOLVE_CAPTCHA: 'audio/solve-captcha.mp3',
+	HAVE_APPOINTMENT: 'audio/have-appointment.mp3'
+};
+
 const MESSAGES = {
-	SOLVE_CAPTCHA: 'Resolver captcha',
-	NO_APPOINTMENT: 'NO HAY SUFICIENTES CITAS DISPONIBLES',
-	HAVE_APPOINTMENT: 'Si tienes citas disponibles'
+	NO_APPOINTMENT: 'NO HAY SUFICIENTES CITAS DISPONIBLES'
 };
 
 // _clickAcceptButton :: () -> IO ()
@@ -41,7 +45,7 @@ const getIndexByValue = (options, value) => Array.from(options).find((x) => x.te
 // notifySolveCaptcha :: Number -> HTMLElement -> IO ()
 const notifySolveCaptcha = curry((ms, btn) => {
 	const action = Monad.do(function*() {
-		const value = btn.disabled ? speak(MESSAGES.SOLVE_CAPTCHA) : click(btn);
+		const value = btn.disabled ? say(AUDIO_MESSAGES.SOLVE_CAPTCHA) : click(btn);
 		return IO.of(yield value);
 	});
 
@@ -73,9 +77,10 @@ export const setPersonalInformation = (user) =>
 		yield setValue(user.name, nameInput);
 		yield setValue(user.cardExpiration, cardExpirationInput);
 		yield setProperty('selectedIndex', countryIndex, countryNationalityInput);
-		yield notifySolveCaptcha(250, sendBtn);
 
-		return IO.of();
+		const action = notifySolveCaptcha(1000, sendBtn);
+
+		return IO.of(yield action);
 	});
 
 // askForAppointment :: () -> IO ()
@@ -102,10 +107,13 @@ export const setContactInformation = (user) =>
 // verifyAppointment :: () -> IO ()
 export const verifyAppointment = () =>
 	Monad.do(function*() {
-		const { NO_APPOINTMENT, HAVE_APPOINTMENT } = MESSAGES;
 		const messageArea = yield querySelector(SELECTORS.TEXT_NO_APPOINTMENT);
-		const submitBtn = yield querySelector(SELECTORS.BTN_SUBMIT);
+		const submitExit = yield querySelector(SELECTORS.BTN_EXIT);
 		const msg = messageArea.textContent;
-		const action = msg === NO_APPOINTMENT ? click(submitBtn) : speak(HAVE_APPOINTMENT);
+		const action =
+			msg === MESSAGES.NO_APPOINTMENT ? click(submitExit) : sayRepeatedly(AUDIO_MESSAGES.HAVE_APPOINTMENT);
 		return IO.of(yield action);
 	});
+
+// noOfficeAvailable :: () => IO ()
+export const noOfficeAvailable = pipe(always(SELECTORS.BTN_EXIT), querySelector, chain(click));

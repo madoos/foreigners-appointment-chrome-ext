@@ -1,7 +1,7 @@
 import { complement, isNil, curryN, pipeK, map, addIndex, always, curry } from 'ramda';
 import safe from 'crocks/Maybe/safe';
 import IO from 'crocks/IO';
-import { fromEvent, from } from 'most';
+import { fromEvent } from 'most';
 import { ioToStream } from './naturalTransformations';
 import { isString } from 'crocks/predicates';
 
@@ -41,12 +41,13 @@ export const click = (selector) =>
 		return el.click();
 	});
 
-// locationIncludes :: String -> IO Boolean
-export const locationIncludes = (x) => IO(() => window.location.href.includes(x));
+// getLocation :: String -> IO URL
+export const getLocation = (x) => IO(() => window.location.href);
 
 // tapF :: Functor F => a -> F b -> a -> F a
 export const tapF = (f) => (x) => map(always(x), f(x));
 
+// Monad.do :: Monad M =>  (a)* -> M b -> M b
 export const Monad = {
 	do: (gen) => {
 		let g = gen();

@@ -1,4 +1,5 @@
 import { create } from '@most/create';
+import IO from 'crocks/IO';
 
 // getChromeMessages :: () -> Stream a
 export const getChromeMessages = () =>
@@ -19,3 +20,6 @@ export const sendChromeMessageToPopup = (data) =>
 		next(chrome.runtime.sendMessage(data));
 		end();
 	});
+
+// getChromeExtensionURL :: String -> IO Path
+export const getChromeExtensionURL = (file) => IO(() => chrome.runtime.getURL(file));

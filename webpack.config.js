@@ -2,7 +2,7 @@ const path = require('path');
 const Copy = require('copy-webpack-plugin');
 
 module.exports = {
-	watch: true,
+	watch: process.env.NODE_ENV === 'dev',
 	mode: 'production',
 	entry: {
 		popup: './chrome/popup.js',
@@ -16,10 +16,12 @@ module.exports = {
 		new Copy([
 			{ from: `./chrome/icons/logo.png`, to: 'icons' },
 			{ from: './chrome/manifest.json', to: 'manifest.json' },
-			{ from: './chrome/popup.html', to: 'popup.html' }
+			{ from: './chrome/popup.html', to: 'popup.html' },
+			{ from: `./chrome/audio/solve-captcha.mp3`, to: 'audio' },
+			{ from: `./chrome/audio/have-appointment.mp3`, to: 'audio' }
 		])
 	],
 	optimization: {
-		minimize: false
+		minimize: true
 	}
 };

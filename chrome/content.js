@@ -1,9 +1,9 @@
 import { getChromeMessages, sendChromeMessageToPopup } from './src/chromeRuntime';
-import { pipe, chain, map, filter, pipeK, merge } from 'ramda';
-import { saveUser, getUser, getNextStep, setNextStep } from './src/storage';
+import { pipe, chain, map, filter, pipeK, merge, split, nth } from 'ramda';
+import { saveUser, getUser } from './src/storage';
 import { ioToStream } from './src/naturalTransformations';
 import option from 'crocks/pointfree/option';
-import { isNotNil, locationIncludes, tapF } from './src/helpers';
+import { isNotNil, tapF, getLocation } from './src/helpers';
 import { periodic } from 'most';
 import IO from 'crocks/IO';
 import ReaderT from 'crocks/Reader/ReaderT';
@@ -16,7 +16,8 @@ import {
 	askForAppointment,
 	selectOffice,
 	setContactInformation,
-	verifyAppointment
+	verifyAppointment,
+	noOfficeAvailable
 } from './src/pageSteps';
 
 const ReaderIO = ReaderT(IO);
@@ -27,15 +28,18 @@ const userCodes = {
 	FIRST_OFFICE_AVAILABLE: 0
 };
 
-const steps = {
-	1: () => ReaderIO((user) => selectCity(user.MADRID_CITY)),
-	2: () => ReaderIO((user) => selectProcessType(user.PROCESS_RENOVATION_AND_FINGERPRINT)),
-	3: ReaderIO.liftFn(enterToProcedure),
-	4: () => ReaderIO((user) => setPersonalInformation(user)),
-	5: ReaderIO.liftFn(askForAppointment),
+// stepsByPage :: { PageName: Reader (IO ()) }
+const stepsByPage = {
+	'index.html': () => ReaderIO((user) => selectCity(user.MADRID_CITY)),
+	acOpcDirect: () => ReaderIO((user) => selectCity(user.MADRID_CITY)),
+	acInfo: ReaderIO.liftFn(enterToProcedure),
+	citar: () => ReaderIO((user) => selectProcessType(user.PROCESS_RENOVATION_AND_FINGERPRINT)),
+	acEntrada: () => ReaderIO((user) => setPersonalInformation(user)),
+	acValidarEntrada: ReaderIO.liftFn(askForAppointment),
+	5: ReaderIO.liftFn(verifyAppointment),
 	6: () => ReaderIO((user) => selectOffice(user.FIRST_OFFICE_AVAILABLE)),
 	7: () => ReaderIO((user) => setContactInformation(user)),
-	8: ReaderIO.liftFn(verifyAppointment)
+	acCitar: ReaderIO.liftFn(noOfficeAvailable)
 };
 
 // persistUserDataFromPopup :: () -> Stream ()
@@ -50,12 +54,16 @@ const sendStoredUserToPopup = pipe(
 	chain(sendChromeMessageToPopup)
 );
 
+// getPageName :: URL -> IO String
+const getPageName = pipe(getLocation, map(pipe(split('/'), nth(4), split('?'), nth(0))));
+
 // fillPageFormSteps :: () -> Reader (IO ())
 const fillPageFormSteps = pipeK(
-	ReaderIO.liftFn(() => locationIncludes('index.html')),
-	ReaderIO.liftFn((isIndexPage) => (isIndexPage ? IO.of(1) : getNextStep())),
-	ReaderIO.liftFn(tapF((step) => setNextStep(step + 1))),
-	(step) => steps[step]() // run page Steps
+	ReaderIO.liftFn(getPageName),
+	(pageName) => {
+		debugger;
+		return stepsByPage[pageName]();
+	} // run page Steps
 );
 
 const fillPageFormStepsWithUserData = pipe(
