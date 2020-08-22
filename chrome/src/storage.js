@@ -1,18 +1,18 @@
-import IO from 'crocks/IO';
-import { stringify, safeWhenIsNotNil, parse } from './helpers';
-import { pipe, map } from 'ramda';
+import { pipe, map, prop } from 'ramda';
+import { chromeLocalStorageGet, chromeLocalStorageSet } from './chromeRuntime';
+import { safeEither } from './helpers';
+import { NO_USER_STORED } from './exceptions';
 
 const KEYS = {
-	FRONT_STEP_KEY: 'APPOINTMENT_STEP',
-	USER_DATA: 'APPOINTMENT_STEP_USER_DATA'
+	USER: 'APPOINTMENT_STEP_USER_DATA'
 };
 
-// saveUserData :: User -> IO ()
-export const saveUser = pipe(stringify, (record) => IO(() => localStorage.setItem(KEYS.USER_DATA, record)));
+// saveUserData :: User -> Async Error User
+export const saveUser = chromeLocalStorageSet(KEYS.USER);
 
-// getUser :: () -> IO (Maybe User)
+// getUser :: () -> Async Error (Either exception User)
 export const getUser = pipe(
-	() => IO(() => localStorage.getItem(KEYS.USER_DATA)),
-	map(safeWhenIsNotNil),
-	map(map(parse))
+	() => chromeLocalStorageGet(KEYS.USER),
+	map(prop(KEYS.USER)),
+	map(safeEither(NO_USER_STORED))
 );

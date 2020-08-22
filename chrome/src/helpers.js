@@ -1,9 +1,11 @@
-import { complement, isNil, curryN, pipeK, map, addIndex, always, curry } from 'ramda';
+import { complement, isNil, curryN, pipeK, map, addIndex, always, curry, pipe, sequence, chain } from 'ramda';
 import safe from 'crocks/Maybe/safe';
 import IO from 'crocks/IO';
 import { fromEvent } from 'most';
 import { ioToStream } from './naturalTransformations';
 import { isString } from 'crocks/predicates';
+import { Left, Right } from 'crocks/Either';
+import { Map } from 'immutable-ext';
 
 // isNotNil :: a -> Boolean
 export const isNotNil = complement(isNil);
@@ -77,3 +79,37 @@ export const setProperty = curry((prop, value, el) => {
 
 // setProperty :: String -> HTMLElement -> IO HTMLElement
 export const setValue = setProperty('value');
+
+// getInputValue :: HTMLElement -> String | Boolean
+export const getInputValue = (input) => (input.type === 'checkbox' ? input.checked : input.value);
+
+// setInputValue :: (HTMLElement, a) -> IO HTMLElement
+export const setInputValue = (input, value) =>
+	IO(() => {
+		const prop = input.type === 'checkbox' ? 'checked' : 'value';
+		input[prop] = value;
+		return input;
+	});
+
+// fillForm :: { name: id } -> { name: value } -> IO { id: HTMLElement }
+export const fillForm = curry((selectors, user) => {
+	return pipe(
+		Map,
+		map(getElementById),
+		mapIndexed((io, key) => chain((el) => setInputValue(el, user[key]), io)),
+		sequence(IO.of),
+		map((x) => x.toJS())
+	)(selectors);
+});
+
+// logA2 :: String -> a -> ()
+export const logA2 = curry((tag, x) => console.log(tag, x));
+
+// String -> (() -> ())
+export const logA0 = (tag) => () => console.log(tag);
+
+// safeEither :: b -> a -> either b a
+export const safeEither = curry((leftValue, x) => (isNil(x) ? Left(leftValue) : Right(x)));
+
+// closePopup :: () -> IO ()
+export const closePopup = () => IO(() => window.close());

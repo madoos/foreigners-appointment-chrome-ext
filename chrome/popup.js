@@ -1,11 +1,12 @@
-import { clickStreamFromId, getElementById, mapIndexed } from './src/helpers';
-import { sendChromeMessageToActiveTab, getChromeMessages } from './src/chromeRuntime';
-import { ioToStream } from './src/naturalTransformations';
-import { Map } from 'immutable-ext';
-import { pipe, chain, map, always, sequence, partial, curry, when, toUpper, trim, toLower, evolve } from 'ramda';
+import { clickStreamFromId, getElementById, fillForm, getInputValue, logA2, closePopup } from './src/helpers';
+import { ioToStream, asyncToStream, ioToAsync } from './src/naturalTransformations';
 import isString from 'crocks/predicates/isString';
 import IO from 'crocks/IO';
-import { take } from 'most/src/';
+import { Map } from 'immutable-ext';
+import { saveUser, getUser } from './src/storage';
+import { pipe, chain, map, always, sequence, when, toUpper, trim, toLower, evolve, pipeK } from 'ramda';
+import eitherToAsync from 'crocks/Async/eitherToAsync';
+import { chromeTabsCreate } from './src/chromeRuntime';
 
 const FORM_IDS = {
 	docNumber: 'docNumber',
@@ -17,50 +18,43 @@ const FORM_IDS = {
 	cardExpiration: 'cardExpiration'
 };
 
-// getValueFromInput :: HTMLElement -> String | Boolean
-const getValueFromInput = (input) => (input.type === 'checkbox' ? input.checked : input.value);
+// sanitizeUser :: User -> User
+const sanitizeUser = pipe(map(when(isString, pipe(trim, toUpper))), evolve({ email: toLower }));
 
-// setValueFromInput :: (HTMLElement, a) -> IO HTMLElement
-const setValueFromInput = (input, value) =>
-	IO(() => {
-		const prop = input.type === 'checkbox' ? 'checked' : 'value';
-		input[prop] = value;
-		return input;
-	});
+// fillFormWithUserData :: () -> { name: value } -> IO { id: HTMLElement }
+const fillFormWithUserData = fillForm(FORM_IDS);
 
-// getUserDataFromForm :: { name: id } -> IO { name: String | Boolean }
+// getUserDataFromForm :: () -> IO { name: String | Boolean }
 const getUserDataFromForm = pipe(
+	always(FORM_IDS),
 	Map,
 	map(getElementById),
-	map(map(getValueFromInput)),
+	map(map(getInputValue)),
 	sequence(IO.of),
 	map((x) => x.toJS()),
-	map(map(when(isString, pipe(trim, toUpper)))),
-	map(evolve({ email: toLower }))
+	map(sanitizeUser)
 );
 
-// setUserDataToForm :: { name: id } -> { name: value } -> IO { name: HTMLElement }
-const setUserDataToForm = curry((selectors, user) => {
-	return pipe(
-		Map,
-		map(getElementById),
-		mapIndexed((io, key) => chain((el) => setValueFromInput(el, user[key]), io)),
-		sequence(IO.of),
-		map((x) => x.toJS())
-	)(selectors);
-});
-
-// sendUserDataWhenClick :: String -> Stream ()
-const sendUserDataWhenClick = pipe(
+// saveUserWhenClickButton :: String -> Stream ()
+const saveUserWhenClickButton = pipe(
 	clickStreamFromId,
-	map(always(FORM_IDS)),
 	chain(ioToStream(getUserDataFromForm)),
-	chain(sendChromeMessageToActiveTab)
+	map(sanitizeUser),
+	chain(asyncToStream(saveUser)),
+	chain(ioToStream(fillFormWithUserData)),
+	chain(ioToStream(closePopup))
 );
 
-const setUserDataToUI = pipe(getChromeMessages, partial(take, [ 1 ]), chain(ioToStream(setUserDataToForm(FORM_IDS))));
+const openAppointmentPage = pipeK(
+	clickStreamFromId,
+	ioToStream(() => chromeTabsCreate('https://sede.administracionespublicas.gob.es/icpplus/index.html'))
+);
+
+// fillFormPopupFromStoredUser :: () -> Async Error { id: HTMLElement }
+const fillFormPopupFromStoredUser = pipe(getUser, chain(eitherToAsync), chain(ioToAsync(fillFormWithUserData)));
 
 window.onload = function() {
-	sendUserDataWhenClick('save').forEach(console.log);
-	setUserDataToUI().forEach(console.log, console.error, console.log);
+	fillFormPopupFromStoredUser().fork(logA2('Exception:'), logA2('Value'));
+	saveUserWhenClickButton('save').forEach(logA2('Value'), logA2('Exception:'));
+	openAppointmentPage('open-page').forEach(logA2('Value'), logA2('Exception:'));
 };

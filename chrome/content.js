@@ -1,12 +1,10 @@
-import { getChromeMessages, sendChromeMessageToPopup } from './src/chromeRuntime';
-import { pipe, chain, map, filter, pipeK, merge, split, nth } from 'ramda';
-import { saveUser, getUser } from './src/storage';
-import { ioToStream } from './src/naturalTransformations';
-import option from 'crocks/pointfree/option';
-import { isNotNil, tapF, getLocation } from './src/helpers';
-import { periodic } from 'most';
+import { pipe, chain, map, pipeK, merge, split, nth } from 'ramda';
+import { getUser } from './src/storage';
+import { getLocation, logA2 } from './src/helpers';
 import IO from 'crocks/IO';
 import ReaderT from 'crocks/Reader/ReaderT';
+import { ioToAsync } from './src/naturalTransformations';
+import eitherToAsync from 'crocks/Async/eitherToAsync';
 
 import {
 	selectCity,
@@ -42,39 +40,19 @@ const stepsByPage = {
 	acCitar: ReaderIO.liftFn(noOfficeAvailable)
 };
 
-// persistUserDataFromPopup :: () -> Stream ()
-const persistUserDataFromPopup = pipe(getChromeMessages, chain(ioToStream(saveUser)));
-
-// sendStoredUserToPopup :: () -> Stream ()
-const sendStoredUserToPopup = pipe(
-	() => periodic(500),
-	chain(ioToStream(getUser)),
-	map(option(null)),
-	filter(isNotNil),
-	chain(sendChromeMessageToPopup)
-);
-
 // getPageName :: URL -> IO String
 const getPageName = pipe(getLocation, map(pipe(split('/'), nth(4), split('?'), nth(0))));
 
 // fillPageFormSteps :: () -> Reader (IO ())
-const fillPageFormSteps = pipeK(
-	ReaderIO.liftFn(getPageName),
-	(pageName) => {
-		debugger;
-		return stepsByPage[pageName]();
-	} // run page Steps
-);
+const fillPageFormSteps = pipeK(ReaderIO.liftFn(getPageName), (pageName) => stepsByPage[pageName]());
 
 const fillPageFormStepsWithUserData = pipe(
-	getUser, //
-	map(option({})), //
-	map(merge(userCodes)),
-	chain((user) => fillPageFormSteps().runWith(user)) //
+	getUser,
+	map(map(merge(userCodes))),
+	chain(eitherToAsync),
+	chain(ioToAsync((user) => fillPageFormSteps().runWith(user)))
 );
 
 window.onload = function() {
-	persistUserDataFromPopup().forEach(() => console.log('User Stored'));
-	sendStoredUserToPopup().forEach(console.log, console.error, () => console.log('Sended stored User'));
-	fillPageFormStepsWithUserData().run();
+	fillPageFormStepsWithUserData().fork(logA2('Exception:'), logA2('Data:'));
 };
